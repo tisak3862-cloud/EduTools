@@ -6,495 +6,250 @@
 <title>УчисьЛегко — инструменты для учёбы</title>
 <style>
   :root{
-    --bg:#f5f7fc;
-    --card:#ffffff;
-    --text:#131a2e;
-    --muted:#5d6780;
-    --accent:#5b5bff;
-    --accent2:#8b5cf6;
-    --border:#e6e9f2;
-    --radius:18px;
-    --shadow:0 4px 20px rgba(20,30,70,.06);
+    --bg:#f5f7fc; --card:#ffffff; --text:#131a2e; --muted:#5d6780;
+    --accent:#5b5bff; --accent2:#8b5cf6; --border:#e6e9f2;
+    --radius:18px; --shadow:0 4px 20px rgba(20,30,70,.06);
     --shadow-hover:0 12px 30px rgba(60,70,180,.16);
   }
-
   *{box-sizing:border-box;margin:0;padding:0}
-
   html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',Roboto,-apple-system,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 
-  body{
-    font-family:'Segoe UI',Roboto,-apple-system,'Helvetica Neue',Arial,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
+  /* HERO */
+  .hero{position:relative;padding:90px 20px 70px;text-align:center;
+    background:radial-gradient(900px 400px at 20% 0%,rgba(139,92,246,.18),transparent 60%),
+               radial-gradient(900px 400px at 80% 10%,rgba(91,91,255,.18),transparent 60%),#fff;
+    border-bottom:1px solid var(--border);overflow:hidden}
+  .logo{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;letter-spacing:.4px;color:var(--accent);background:rgba(91,91,255,.08);border:1px solid rgba(91,91,255,.2);padding:7px 16px;border-radius:100px;margin-bottom:28px}
+  h1{font-size:clamp(34px,6vw,64px);line-height:1.1;letter-spacing:-1.5px;font-weight:800;background:linear-gradient(120deg,#131a2e 20%,var(--accent) 60%,var(--accent2) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:18px}
+  .tagline{font-size:clamp(17px,2.4vw,23px);color:var(--muted);max-width:620px;margin:0 auto 40px}
+  .nav-buttons{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:900px;margin:0 auto}
+  .nav-buttons a{text-decoration:none;color:var(--text);background:var(--card);border:1px solid var(--border);padding:12px 22px;border-radius:100px;font-weight:600;font-size:15px;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s,border-color .18s,color .18s}
+  .nav-buttons a:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:var(--accent);color:var(--accent)}
 
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    padding:90px 20px 70px;
-    text-align:center;
-    background:
-      radial-gradient(900px 400px at 20% 0%, rgba(139,92,246,.18), transparent 60%),
-      radial-gradient(900px 400px at 80% 10%, rgba(91,91,255,.18), transparent 60%),
-      #ffffff;
-    border-bottom:1px solid var(--border);
-    overflow:hidden;
-  }
+  /* SECTIONS */
+  section{max-width:1180px;margin:0 auto;padding:70px 20px 20px;scroll-margin-top:20px}
+  .section-head{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  .section-icon{width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center;font-size:22px;border-radius:14px;background:linear-gradient(135deg,rgba(91,91,255,.14),rgba(139,92,246,.14));border:1px solid rgba(91,91,255,.18)}
+  h2{font-size:clamp(24px,3.4vw,34px);letter-spacing:-.7px;font-weight:800}
+  .section-sub{color:var(--muted);margin-bottom:30px;font-size:15px}
+  .divider{height:1px;background:linear-gradient(90deg,var(--border),transparent);margin-bottom:30px}
 
-  .hero::after{
-    content:"";
-    position:absolute;
-    inset:auto 0 -1px 0;
-    height:1px;
-    background:linear-gradient(90deg,transparent,var(--accent),transparent);
-    opacity:.4;
-  }
+  /* CARDS */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s,border-color .2s;cursor:pointer}
+  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:rgba(91,91,255,.45)}
+  .card .emoji{font-size:22px;line-height:1;width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,#f2f4ff,#f7f0ff);border:1px solid var(--border)}
+  .card .name{font-weight:600;font-size:15px;line-height:1.35}
+  .card .hint{font-size:12.5px;color:var(--muted);margin-top:3px}
 
-  .logo{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    font-weight:700;
-    font-size:15px;
-    letter-spacing:.4px;
-    color:var(--accent);
-    background:rgba(91,91,255,.08);
-    border:1px solid rgba(91,91,255,.2);
-    padding:7px 16px;
-    border-radius:100px;
-    margin-bottom:28px;
-  }
+  /* SUPPORT */
+  .support{max-width:1180px;margin:80px auto 0;padding:0 20px}
+  .support-box{position:relative;text-align:center;border-radius:26px;padding:56px 26px;background:radial-gradient(600px 240px at 50% 0%,rgba(139,92,246,.22),transparent 70%),linear-gradient(135deg,#fff,#f7f8ff);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden}
+  .support-box h3{font-size:clamp(22px,3vw,30px);letter-spacing:-.6px;margin-bottom:12px}
+  .support-box p{color:var(--muted);max-width:560px;margin:0 auto 28px}
+  .btn-boosty{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:16px;color:#fff;padding:15px 34px;border-radius:100px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 10px 26px rgba(91,91,255,.35);transition:transform .18s,box-shadow .18s}
+  .btn-boosty:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 34px rgba(91,91,255,.45)}
 
-  h1{
-    font-size:clamp(34px,6vw,64px);
-    line-height:1.1;
-    letter-spacing:-1.5px;
-    font-weight:800;
-    background:linear-gradient(120deg,#131a2e 20%,var(--accent) 60%,var(--accent2) 90%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    margin-bottom:18px;
-  }
+  /* FOOTER */
+  footer{margin-top:80px;padding:56px 20px 60px;background:#0f1425;color:#c3cade}
+  .footer-inner{max-width:900px;margin:0 auto;text-align:center}
+  footer h3{color:#fff;font-size:clamp(20px,2.8vw,26px);margin-bottom:16px;letter-spacing:-.5px}
+  footer p{font-size:15px;color:#98a2bd;margin-bottom:14px}
+  footer .copy{margin-top:32px;padding-top:22px;border-top:1px solid rgba(255,255,255,.09);font-size:13px;color:#6c7695}
 
-  .tagline{
-    font-size:clamp(17px,2.4vw,23px);
-    color:var(--muted);
-    max-width:620px;
-    margin:0 auto 40px;
-  }
-
-  .nav-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    justify-content:center;
-    max-width:900px;
-    margin:0 auto;
-  }
-
-  .nav-buttons a{
-    text-decoration:none;
-    color:var(--text);
-    background:var(--card);
-    border:1px solid var(--border);
-    padding:12px 22px;
-    border-radius:100px;
-    font-weight:600;
-    font-size:15px;
-    box-shadow:var(--shadow);
-    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, color .18s ease;
-  }
-
-  .nav-buttons a:hover{
-    transform:translateY(-3px);
-    box-shadow:var(--shadow-hover);
-    border-color:var(--accent);
-    color:var(--accent);
-  }
-
-  /* ---------- SECTIONS ---------- */
-  section{
-    max-width:1180px;
-    margin:0 auto;
-    padding:70px 20px 20px;
-    scroll-margin-top:20px;
-  }
-
-  .section-head{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    margin-bottom:8px;
-  }
-
-  .section-icon{
-    width:46px;height:46px;
-    flex:0 0 46px;
-    display:grid;place-items:center;
-    font-size:22px;
-    border-radius:14px;
-    background:linear-gradient(135deg,rgba(91,91,255,.14),rgba(139,92,246,.14));
-    border:1px solid rgba(91,91,255,.18);
-  }
-
-  h2{
-    font-size:clamp(24px,3.4vw,34px);
-    letter-spacing:-.7px;
-    font-weight:800;
-  }
-
-  .section-sub{
-    color:var(--muted);
-    margin-bottom:30px;
-    font-size:15px;
-  }
-
-  .divider{
-    height:1px;
-    background:linear-gradient(90deg,var(--border),transparent);
-    margin-bottom:30px;
-  }
-
-  /* ---------- CARDS ---------- */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(255px,1fr));
-    gap:16px;
-  }
-
-  .card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:20px;
-    display:flex;
-    gap:14px;
-    align-items:flex-start;
-    box-shadow:var(--shadow);
-    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-    opacity:0;
-    transform:translateY(18px);
-    cursor:pointer;
-  }
-
-  .card.visible{
-    opacity:1;
-    transform:translateY(0);
-  }
-
-  .card:hover{
-    transform:translateY(-5px);
-    box-shadow:var(--shadow-hover);
-    border-color:rgba(91,91,255,.45);
-  }
-
-  .card .emoji{
-    font-size:22px;
-    line-height:1;
-    width:42px;height:42px;
-    flex:0 0 42px;
-    display:grid;place-items:center;
-    border-radius:12px;
-    background:linear-gradient(135deg,#f2f4ff,#f7f0ff);
-    border:1px solid var(--border);
-  }
-
-  .card .name{
-    font-weight:600;
-    font-size:15px;
-    line-height:1.35;
-  }
-
-  .card .hint{
-    font-size:12.5px;
-    color:var(--muted);
-    margin-top:3px;
-  }
-
-  /* ---------- SUPPORT ---------- */
-  .support{
-    max-width:1180px;
-    margin:80px auto 0;
-    padding:0 20px;
-  }
-
-  .support-box{
-    position:relative;
-    text-align:center;
-    border-radius:26px;
-    padding:56px 26px;
-    background:
-      radial-gradient(600px 240px at 50% 0%, rgba(139,92,246,.22), transparent 70%),
-      linear-gradient(135deg,#ffffff,#f7f8ff);
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
-    overflow:hidden;
-  }
-
-  .support-box h3{
-    font-size:clamp(22px,3vw,30px);
-    letter-spacing:-.6px;
-    margin-bottom:12px;
-  }
-
-  .support-box p{
-    color:var(--muted);
-    max-width:560px;
-    margin:0 auto 28px;
-  }
-
-  .btn-boosty{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    text-decoration:none;
-    font-weight:700;
-    font-size:16px;
-    color:#fff;
-    padding:15px 34px;
-    border-radius:100px;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    box-shadow:0 10px 26px rgba(91,91,255,.35);
-    transition:transform .18s ease, box-shadow .18s ease;
-  }
-
-  .btn-boosty:hover{
-    transform:translateY(-3px) scale(1.02);
-    box-shadow:0 16px 34px rgba(91,91,255,.45);
-  }
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    margin-top:80px;
-    padding:56px 20px 60px;
-    background:#0f1425;
-    color:#c3cade;
-  }
-
-  .footer-inner{
-    max-width:900px;
-    margin:0 auto;
-    text-align:center;
-  }
-
-  footer h3{
-    color:#fff;
-    font-size:clamp(20px,2.8vw,26px);
-    margin-bottom:16px;
-    letter-spacing:-.5px;
-  }
-
-  footer p{
-    font-size:15px;
-    color:#98a2bd;
-    margin-bottom:14px;
-  }
-
-  footer .copy{
-    margin-top:32px;
-    padding-top:22px;
-    border-top:1px solid rgba(255,255,255,.09);
-    font-size:13px;
-    color:#6c7695;
-  }
-
-  /* ---------- TO TOP ---------- */
-  #toTop{
-    position:fixed;
-    right:22px;
-    bottom:22px;
-    width:48px;height:48px;
-    border-radius:50%;
-    border:none;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    color:#fff;
-    font-size:20px;
-    cursor:pointer;
-    box-shadow:0 10px 24px rgba(91,91,255,.4);
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .25s ease, transform .25s ease;
-    z-index:99;
-  }
-
+  /* TO TOP */
+  #toTop{position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:20px;cursor:pointer;box-shadow:0 10px 24px rgba(91,91,255,.4);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99}
   #toTop.show{opacity:1;pointer-events:auto}
   #toTop:hover{transform:translateY(-4px)}
+
+  /* MODAL */
+  .modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(15,20,37,.5);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px;opacity:0;transition:opacity .2s}
+  .modal-overlay.open{display:flex;opacity:1}
+  .modal{width:100%;max-width:560px;max-height:88vh;overflow-y:auto;background:#fff;border-radius:22px;border:1px solid var(--border);box-shadow:0 30px 80px rgba(15,20,37,.25);transform:translateY(14px) scale(.98);transition:transform .25s}
+  .modal-overlay.open .modal{transform:translateY(0) scale(1)}
+  .modal-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;border-radius:22px 22px 0 0;z-index:1}
+  .modal-header h3{font-size:18px;font-weight:700;letter-spacing:-.3px}
+  .modal-close{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:20px;transition:background .15s,color .15s}
+  .modal-close:hover{background:#f2f4ff;color:var(--accent)}
+  .modal-body{padding:22px 24px 26px}
+
+  /* FORM */
+  .form-group{margin-bottom:14px}
+  .form-group label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px}
+  .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border-radius:12px;border:1px solid var(--border);background:#f7f8ff;color:var(--text);font-size:15px;outline:none;transition:border-color .15s,background .15s;font-family:inherit}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);background:#fff}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 6px 18px rgba(91,91,255,.3);font-family:inherit}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(91,91,255,.4)}
+  .result-box{padding:16px;border-radius:14px;background:linear-gradient(135deg,#f2f4ff,#f7f0ff);border:1px solid rgba(91,91,255,.15);margin-top:14px;font-size:14px;line-height:1.6}
+  .result-box .label{font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+  .result-box .value{font-size:18px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+  .result-box .sub{font-size:13px;color:var(--muted);margin-top:8px}
+  canvas.graph{width:100%;height:220px;background:#f7f8ff;border-radius:12px;border:1px solid var(--border);margin-top:14px;display:block}
+  .info-block{padding:16px;border-radius:14px;background:linear-gradient(135deg,rgba(91,91,255,.06),rgba(139,92,246,.06));border:1px solid rgba(91,91,255,.15);margin-bottom:14px;font-size:14px;line-height:1.6}
+  .info-block h4{font-size:14px;font-weight:700;margin-bottom:8px;color:var(--text)}
+  .info-block p{color:var(--muted);font-size:13.5px}
+  table.truth{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.truth th{text-align:center;padding:8px;background:#f2f4ff;color:var(--text);font-weight:700}
+  table.truth td{text-align:center;padding:8px;border-top:1px solid var(--border)}
+  table.truth tr:hover td{background:#f7f8ff}
 
   @media (max-width:520px){
     .hero{padding:60px 16px 50px}
     .nav-buttons a{padding:10px 16px;font-size:14px}
     .grid{grid-template-columns:1fr}
     section{padding:50px 16px 10px}
+    .form-row{grid-template-columns:1fr}
   }
 </style>
 </head>
 <body>
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 <header class="hero">
   <div class="logo">📚 УчисьЛегко</div>
   <h1>УчисьЛегко</h1>
   <p class="tagline">Этот сайт сделает вашу учёбу легче</p>
-
   <nav class="nav-buttons">
     <a href="#algebra">📐 Алгебра и дроби</a>
-    <a href="#geometry">📐 Геометрия</a>
+    <a href="#geometry">📏 Геометрия</a>
     <a href="#probability">🎲 Теория вероятностей</a>
     <a href="#physics">🧲 Физика</a>
     <a href="#informatics">💻 Информатика</a>
   </nav>
 </header>
 
-<!-- ================= АЛГЕБРА ================= -->
+<!-- АЛГЕБРА -->
 <section id="algebra">
-  <div class="section-head">
-    <div class="section-icon">📐</div>
-    <h2>Алгебра и дроби</h2>
-  </div>
+  <div class="section-head"><div class="section-icon">📐</div><h2>Алгебра и дроби</h2></div>
   <p class="section-sub">15 инструментов для вычислений, преобразований и графиков</p>
   <div class="divider"></div>
   <div class="grid">
-    <div class="card"><div class="emoji">🟰</div><div><div class="name">Калькулятор уравнений</div><div class="hint">Линейные, квадратные, любые</div></div></div>
-    <div class="card"><div class="emoji">➗</div><div><div class="name">Калькулятор дробей</div><div class="hint">Сокращение и действия</div></div></div>
-    <div class="card"><div class="emoji">🔢</div><div><div class="name">Калькулятор матриц и определителей</div><div class="hint">Умножение, ранг, det</div></div></div>
-    <div class="card"><div class="emoji">📈</div><div><div class="name">Графический калькулятор функций</div><div class="hint">Построение графиков</div></div></div>
-    <div class="card"><div class="emoji">🧩</div><div><div class="name">Калькулятор систем линейных уравнений</div><div class="hint">Метод Гаусса и Крамера</div></div></div>
-    <div class="card"><div class="emoji">📉</div><div><div class="name">Калькулятор интегралов и производных</div><div class="hint">Пошаговое решение</div></div></div>
-    <div class="card"><div class="emoji">🧮</div><div><div class="name">Калькулятор дискриминанта и квадратных уравнений</div><div class="hint">Корни и теорема Виета</div></div></div>
-    <div class="card"><div class="emoji">📷</div><div><div class="name">Распознаватель математического текста</div><div class="hint">Фото-сканер примеров</div></div></div>
-    <div class="card"><div class="emoji">📝</div><div><div class="name">Интерактивный математический блокнот</div><div class="hint">Записи и расчёты</div></div></div>
-    <div class="card"><div class="emoji">🌀</div><div><div class="name">Калькулятор комплексных чисел</div><div class="hint">Все действия и модуль</div></div></div>
-    <div class="card"><div class="emoji">🪄</div><div><div class="name">Упроститель алгебраических выражений</div><div class="hint">Приведение подобных</div></div></div>
-    <div class="card"><div class="emoji">♾️</div><div><div class="name">Калькулятор пределов (лимитов)</div><div class="hint">Пределы функций</div></div></div>
-    <div class="card"><div class="emoji">📐</div><div><div class="name">Калькулятор тригонометрических функций</div><div class="hint">sin, cos, tg, ctg</div></div></div>
-    <div class="card"><div class="emoji">🧱</div><div><div class="name">Разложитель многочленов на множители</div><div class="hint">Формулы сокращённого умножения</div></div></div>
-    <div class="card"><div class="emoji">🎲</div><div><div class="name">Математический генератор случайных примеров</div><div class="hint">Тренировка навыков</div></div></div>
+    <div class="card" onclick="openTool('eq')"><div class="emoji">🟰</div><div><div class="name">Калькулятор уравнений</div><div class="hint">Линейные: ax + b = c</div></div></div>
+    <div class="card" onclick="openTool('frac')"><div class="emoji">➗</div><div><div class="name">Калькулятор дробей</div><div class="hint">Сокращение и действия</div></div></div>
+    <div class="card" onclick="openTool('matrix')"><div class="emoji">🔢</div><div><div class="name">Калькулятор матриц 2×2</div><div class="hint">Определитель, след, обратная</div></div></div>
+    <div class="card" onclick="openTool('graph')"><div class="emoji">📈</div><div><div class="name">Графический калькулятор</div><div class="hint">Построение y = x²</div></div></div>
+    <div class="card" onclick="openTool('sys')"><div class="emoji">🧩</div><div><div class="name">Системы линейных уравнений</div><div class="hint">2 уравнения, 2 неизвестных</div></div></div>
+    <div class="card" onclick="openTool('integral')"><div class="emoji">📉</div><div><div class="name">Интегралы и производные</div><div class="hint">Численно, в точке</div></div></div>
+    <div class="card" onclick="openTool('disc')"><div class="emoji">🧮</div><div><div class="name">Дискриминант и квадратные уравнения</div><div class="hint">ax² + bx + c = 0</div></div></div>
+    <div class="card" onclick="openTool('percent')"><div class="emoji">💯</div><div><div class="name">Калькулятор процентов</div><div class="hint">X% от числа</div></div></div>
+    <div class="card" onclick="openTool('power')"><div class="emoji">⬆️</div><div><div class="name">Степени и корни</div><div class="hint">aⁿ и √a</div></div></div>
+    <div class="card" onclick="openTool('complex')"><div class="emoji">🌀</div><div><div class="name">Калькулятор комплексных чисел</div><div class="hint">+ − ×</div></div></div>
+    <div class="card" onclick="openTool('simplify')"><div class="emoji">🪄</div><div><div class="name">Упроститель выражений</div><div class="hint">Раскрытие скобок</div></div></div>
+    <div class="card" onclick="openTool('limit')"><div class="emoji">♾️</div><div><div class="name">Калькулятор пределов</div><div class="hint">Численное приближение</div></div></div>
+    <div class="card" onclick="openTool('trig')"><div class="emoji">📐</div><div><div class="name">Тригонометрия</div><div class="hint">sin, cos, tan, arcsin…</div></div></div>
+    <div class="card" onclick="openTool('factor')"><div class="emoji">🧱</div><div><div class="name">Разложитель на множители</div><div class="hint">Простые множители числа</div></div></div>
+    <div class="card" onclick="openTool('genrand')"><div class="emoji">🎲</div><div><div class="name">Генератор случайных чисел</div><div class="hint">В диапазоне</div></div></div>
   </div>
 </section>
 
-<!-- ================= ГЕОМЕТРИЯ ================= -->
+<!-- ГЕОМЕТРИЯ -->
 <section id="geometry">
-  <div class="section-head">
-    <div class="section-icon">📏</div>
-    <h2>Геометрия и стереометрия</h2>
-  </div>
+  <div class="section-head"><div class="section-icon">📏</div><h2>Геометрия и стереометрия</h2></div>
   <p class="section-sub">15 инструментов для фигур, чертежей и 3D-тел</p>
   <div class="divider"></div>
   <div class="grid">
-    <div class="card"><div class="emoji">🔺</div><div><div class="name">Калькулятор треугольников</div><div class="hint">По трём сторонам или углам</div></div></div>
-    <div class="card"><div class="emoji">✏️</div><div><div class="name">Интерактивный геометрический чертёжник</div><div class="hint">Рисование фигур</div></div></div>
-    <div class="card"><div class="emoji">🍦</div><div><div class="name">Калькулятор объёма и площади конуса</div><div class="hint">Конус и усечённый конус</div></div></div>
-    <div class="card"><div class="emoji">⬜</div><div><div class="name">Калькулятор площади и периметра плоских фигур</div><div class="hint">Все формулы планиметрии</div></div></div>
-    <div class="card"><div class="emoji">🧊</div><div><div class="name">Калькулятор площади поверхности 3D-тел</div><div class="hint">Куб, шар, цилиндр</div></div></div>
-    <div class="card"><div class="emoji">🏗️</div><div><div class="name">Стереометрический 3D-конструктор</div><div class="hint">Сборка тел вращения</div></div></div>
-    <div class="card"><div class="emoji">➡️</div><div><div class="name">Калькулятор векторов и координат</div><div class="hint">Скалярное и векторное произведение</div></div></div>
-    <div class="card"><div class="emoji">🔪</div><div><div class="name">Построитель сечений многогранников</div><div class="hint">Сечения плоскостью</div></div></div>
-    <div class="card"><div class="emoji">📐</div><div><div class="name">Цифровой транспортир и измеритель углов</div><div class="hint">Углы онлайн</div></div></div>
-    <div class="card"><div class="emoji">🧩</div><div><div class="name">Головоломка геометрических построений</div><div class="hint">Постройка циркулем и линейкой</div></div></div>
-    <div class="card"><div class="emoji">📏</div><div><div class="name">Калькулятор теоремы Пифагора</div><div class="hint">Катеты и гипотенуза</div></div></div>
-    <div class="card"><div class="emoji">⭕</div><div><div class="name">Интерактивная тригонометрическая окружность</div><div class="hint">Значения sin и cos</div></div></div>
-    <div class="card"><div class="emoji">🎯</div><div><div class="name">Калькулятор вписанных и описанных окружностей</div><div class="hint">Радиусы и центры</div></div></div>
-    <div class="card"><div class="emoji">🔍</div><div><div class="name">Анализатор геометрических теорем</div><div class="hint">Проверка условий</div></div></div>
-    <div class="card"><div class="emoji">🔄</div><div><div class="name">Трансформатор геометрических фигур</div><div class="hint">Отражение и поворот</div></div></div>
+    <div class="card" onclick="openTool('tri')"><div class="emoji">🔺</div><div><div class="name">Треугольник по сторонам</div><div class="hint">Площадь по Герону</div></div></div>
+    <div class="card" onclick="openTool('circle')"><div class="emoji">⭕</div><div><div class="name">Окружность и круг</div><div class="hint">S и C по радиусу</div></div></div>
+    <div class="card" onclick="openTool('cone')"><div class="emoji">🍦</div><div><div class="name">Конус</div><div class="hint">V и S боковой</div></div></div>
+    <div class="card" onclick="openTool('rect')"><div class="emoji">⬜</div><div><div class="name">Прямоугольник</div><div class="hint">P, S, диагональ</div></div></div>
+    <div class="card" onclick="openTool('sphere')"><div class="emoji">🧊</div><div><div class="name">Шар и сфера</div><div class="hint">V и S поверхности</div></div></div>
+    <div class="card" onclick="openTool('cyl')"><div class="emoji">🥫</div><div><div class="name">Цилиндр</div><div class="hint">V и полная S</div></div></div>
+    <div class="card" onclick="openTool('vector')"><div class="emoji">➡️</div><div><div class="name">Векторы</div><div class="hint">Сложение, длина, скалярное</div></div></div>
+    <div class="card" onclick="openTool('dist')"><div class="emoji">📍</div><div><div class="name">Расстояние между точками</div><div class="hint">На плоскости</div></div></div>
+    <div class="card" onclick="openTool('angle')"><div class="emoji">📐</div><div><div class="name">Перевод углов</div><div class="hint">Градусы ↔ радианы</div></div></div>
+    <div class="card" onclick="openTool('pyth')"><div class="emoji">📏</div><div><div class="name">Теорема Пифагора</div><div class="hint">Катеты и гипотенуза</div></div></div>
+    <div class="card" onclick="openTool('poly')"><div class="emoji">🔷</div><div><div class="name">Правильный многоугольник</div><div class="hint">Площадь по стороне</div></div></div>
+    <div class="card" onclick="openTool('trap')"><div class="emoji">🔶</div><div><div class="name">Трапеция</div><div class="hint">Площадь</div></div></div>
+    <div class="card" onclick="openTool('sector')"><div class="emoji">🥧</div><div><div class="name">Сектор круга</div><div class="hint">Площадь и дуга</div></div></div>
+    <div class="card" onclick="openTool('ellipse')"><div class="emoji">🥚</div><div><div class="name">Эллипс</div><div class="hint">Площадь по полуосям</div></div></div>
+    <div class="card" onclick="openTool('cube')"><div class="emoji">🎲</div><div><div class="name">Куб</div><div class="hint">V, S, диагональ</div></div></div>
   </div>
 </section>
 
-<!-- ================= ВЕРОЯТНОСТЬ ================= -->
+<!-- ВЕРОЯТНОСТЬ -->
 <section id="probability">
-  <div class="section-head">
-    <div class="section-icon">🎲</div>
-    <h2>Теория вероятностей и комбинаторика</h2>
-  </div>
+  <div class="section-head"><div class="section-icon">🎲</div><h2>Теория вероятностей и комбинаторика</h2></div>
   <p class="section-sub">15 инструментов для случайностей, распределений и статистики</p>
   <div class="divider"></div>
   <div class="grid">
-    <div class="card"><div class="emoji">🎯</div><div><div class="name">Калькулятор вероятностей событий</div><div class="hint">Сложение и умножение</div></div></div>
-    <div class="card"><div class="emoji">🧮</div><div><div class="name">Калькулятор сочетаний и перестановок</div><div class="hint">Комбинаторика</div></div></div>
-    <div class="card"><div class="emoji">🎰</div><div><div class="name">Виртуальный генератор случайных событий</div><div class="hint">Свои вероятности</div></div></div>
-    <div class="card"><div class="emoji">🎲</div><div><div class="name">Симулятор бросания игральных костей</div><div class="hint">1–6 кубиков</div></div></div>
-    <div class="card"><div class="emoji">🪙</div><div><div class="name">Симулятор подбрасывания монетки</div><div class="hint">Серии бросков</div></div></div>
-    <div class="card"><div class="emoji">🎡</div><div><div class="name">Виртуальное колесо фортуны</div><div class="hint">Рандомайзер</div></div></div>
-    <div class="card"><div class="emoji">📊</div><div><div class="name">Построитель графиков распределения вероятностей</div><div class="hint">Визуализация</div></div></div>
-    <div class="card"><div class="emoji">🧮</div><div><div class="name">Калькулятор биномиального распределения</div><div class="hint">Формула Бернулли</div></div></div>
-    <div class="card"><div class="emoji">🔔</div><div><div class="name">Визуализатор нормального распределения</div><div class="hint">Доска Гаусса</div></div></div>
-    <div class="card"><div class="emoji">📋</div><div><div class="name">Калькулятор статистической выборки</div><div class="hint">Среднее, медиана, мода</div></div></div>
-    <div class="card"><div class="emoji">🌳</div><div><div class="name">Построитель деревьев вероятностей</div><div class="hint">Пошаговые исходы</div></div></div>
-    <div class="card"><div class="emoji">📉</div><div><div class="name">Калькулятор математического ожидания и дисперсии</div><div class="hint">M(X) и D(X)</div></div></div>
-    <div class="card"><div class="emoji">⭕</div><div><div class="name">Интерактивный анализатор кругов Эйлера</div><div class="hint">Множества</div></div></div>
-    <div class="card"><div class="emoji">🚶</div><div><div class="name">Симулятор случайных блужданий</div><div class="hint">Броуновское движение</div></div></div>
-    <div class="card"><div class="emoji">📶</div><div><div class="name">Калькулятор частоты и относительной вероятности</div><div class="hint">Статистическая вероятность</div></div></div>
+    <div class="card" onclick="openTool('prob')"><div class="emoji">🎯</div><div><div class="name">Вероятность события</div><div class="hint">P(A) = m / n</div></div></div>
+    <div class="card" onclick="openTool('comb')"><div class="emoji">🧮</div><div><div class="name">Сочетания и перестановки</div><div class="hint">C(n,k), A(n,k), P(n)</div></div></div>
+    <div class="card" onclick="openTool('dice')"><div class="emoji">🎲</div><div><div class="name">Игральные кости</div><div class="hint">Бросок 1–10 кубиков</div></div></div>
+    <div class="card" onclick="openTool('coin')"><div class="emoji">🪙</div><div><div class="name">Подбрасывание монетки</div><div class="hint">Орёл или решка</div></div></div>
+    <div class="card" onclick="openTool('wheel')"><div class="emoji">🎡</div><div><div class="name">Колесо фортуны</div><div class="hint">Свой список</div></div></div>
+    <div class="card" onclick="openTool('binom')"><div class="emoji">📊</div><div><div class="name">Биномиальное распределение</div><div class="hint">P(X = k) = C(n,k)·pᵏ·qⁿ⁻ᵏ</div></div></div>
+    <div class="card" onclick="openTool('normal')"><div class="emoji">🔔</div><div><div class="name">Нормальное распределение</div><div class="hint">График и плотность</div></div></div>
+    <div class="card" onclick="openTool('stat')"><div class="emoji">📋</div><div><div class="name">Статистика выборки</div><div class="hint">Среднее, медиана, дисперсия</div></div></div>
+    <div class="card" onclick="openTool('tree')"><div class="emoji">🌳</div><div><div class="name">Дерево вероятностей</div><div class="hint">Два уровня</div></div></div>
+    <div class="card" onclick="openTool('exp')"><div class="emoji">📉</div><div><div class="name">Мат. ожидание и дисперсия</div><div class="hint">E[X] и D[X]</div></div></div>
+    <div class="card" onclick="openTool('freq')"><div class="emoji">📶</div><div><div class="name">Относительная частота</div><div class="hint">m / n</div></div></div>
+    <div class="card" onclick="openTool('rand')"><div class="emoji">🎰</div><div><div class="name">Генератор случайных чисел</div><div class="hint">Список чисел</div></div></div>
+    <div class="card" onclick="openTool('walk')"><div class="emoji">🚶</div><div><div class="name">Случайное блуждание</div><div class="hint">Визуализация</div></div></div>
+    <div class="card" onclick="openTool('bayes')"><div class="emoji">🔮</div><div><div class="name">Формула Байеса</div><div class="hint">P(A|B) через P(B|A)</div></div></div>
+    <div class="card" onclick="openTool('uniform')"><div class="emoji">📏</div><div><div class="name">Равномерное распределение</div><div class="hint">Плотность на [a,b]</div></div></div>
   </div>
 </section>
 
-<!-- ================= ФИЗИКА ================= -->
+<!-- ФИЗИКА -->
 <section id="physics">
-  <div class="section-head">
-    <div class="section-icon">🧲</div>
-    <h2>Физика и симуляторы</h2>
-  </div>
+  <div class="section-head"><div class="section-icon">🧲</div><h2>Физика и симуляторы</h2></div>
   <p class="section-sub">15 инструментов для расчётов и виртуальных экспериментов</p>
   <div class="divider"></div>
   <div class="grid">
-    <div class="card"><div class="emoji">🧲</div><div><div class="name">Калькулятор физических формул (по темам)</div><div class="hint">Механика, электричество, оптика</div></div></div>
-    <div class="card"><div class="emoji">🔄</div><div><div class="name">Умный конвертер физических величин</div><div class="hint">СИ и внесистемные единицы</div></div></div>
-    <div class="card"><div class="emoji">⚡</div><div><div class="name">Виртуальный конструктор электрических схем</div><div class="hint">Сборка и расчёт цепей</div></div></div>
-    <div class="card"><div class="emoji">🏖️</div><div><div class="name">2D-физическая песочница</div><div class="hint">Симулятор твёрдых тел</div></div></div>
-    <div class="card"><div class="emoji">💥</div><div><div class="name">Баллистический симулятор</div><div class="hint">Траектории снарядов</div></div></div>
-    <div class="card"><div class="emoji">🔦</div><div><div class="name">Оптический конструктор линз и лазеров</div><div class="hint">Ход лучей</div></div></div>
-    <div class="card"><div class="emoji">🌡️</div><div><div class="name">Виртуальная лаборатория термодинамики</div><div class="hint">Газовые законы</div></div></div>
-    <div class="card"><div class="emoji">⏱️</div><div><div class="name">Симулятор механических маятников и пружин</div><div class="hint">Колебания</div></div></div>
-    <div class="card"><div class="emoji">📚</div><div><div class="name">Интерактивный справочник физических констант</div><div class="hint">Все основные постоянные</div></div></div>
-    <div class="card"><div class="emoji">🔌</div><div><div class="name">Калькулятор закона Ома и цепей постоянного тока</div><div class="hint">U, I, R, P</div></div></div>
-    <div class="card"><div class="emoji">⚙️</div><div><div class="name">Калькулятор кинетической и потенциальной энергии</div><div class="hint">Энергия и работа</div></div></div>
-    <div class="card"><div class="emoji">🪐</div><div><div class="name">Симулятор гравитационного взаимодействия тел</div><div class="hint">Орбиты и притяжение</div></div></div>
-    <div class="card"><div class="emoji">〰️</div><div><div class="name">Аниматор волновых процессов и интерференции</div><div class="hint">Волны и суперпозиция</div></div></div>
-    <div class="card"><div class="emoji">💧</div><div><div class="name">Виртуальный гидравлический пресс</div><div class="hint">Симулятор давлений</div></div></div>
-    <div class="card"><div class="emoji">🚀</div><div><div class="name">Калькулятор кинематики движения</div><div class="hint">Скорость, путь, ускорение</div></div></div>
+    <div class="card" onclick="openTool('ohm')"><div class="emoji">🔌</div><div><div class="name">Закон Ома и мощность</div><div class="hint">U, I, R, P</div></div></div>
+    <div class="card" onclick="openTool('convert')"><div class="emoji">🔄</div><div><div class="name">Конвертер величин</div><div class="hint">Длина, масса, температура</div></div></div>
+    <div class="card" onclick="openTool('energy')"><div class="emoji">⚙️</div><div><div class="name">Кинетическая и потенциальная энергия</div><div class="hint">E = mv²/2, E = mgh</div></div></div>
+    <div class="card" onclick="openTool('kinem')"><div class="emoji">🚀</div><div><div class="name">Кинематика движения</div><div class="hint">s, v, t при ускорении</div></div></div>
+    <div class="card" onclick="openTool('pendulum')"><div class="emoji">⏱️</div><div><div class="name">Маятник</div><div class="hint">T = 2π√(L/g)</div></div></div>
+    <div class="card" onclick="openTool('gravity')"><div class="emoji">🪐</div><div><div class="name">Гравитационное взаимодействие</div><div class="hint">F = G·m₁·m₂/r²</div></div></div>
+    <div class="card" onclick="openTool('pressure')"><div class="emoji">💧</div><div><div class="name">Давление жидкости</div><div class="hint">P = ρgh</div></div></div>
+    <div class="card" onclick="openTool('density')"><div class="emoji">🧱</div><div><div class="name">Плотность</div><div class="hint">ρ = m / V</div></div></div>
+    <div class="card" onclick="openTool('work')"><div class="emoji">🛠️</div><div><div class="name">Работа и мощность</div><div class="hint">A = F·s, N = A/t</div></div></div>
+    <div class="card" onclick="openTool('wave')"><div class="emoji">〰️</div><div><div class="name">Волны</div><div class="hint">λ = v / f</div></div></div>
+    <div class="card" onclick="openTool('mirror')"><div class="emoji">🪞</div><div><div class="name">Зеркало</div><div class="hint">F = R / 2</div></div></div>
+    <div class="card" onclick="openTool('resist')"><div class="emoji">🧵</div><div><div class="name">Сопротивление проводника</div><div class="hint">R = ρL / S</div></div></div>
+    <div class="card" onclick="openTool('capac')"><div class="emoji">🔋</div><div><div class="name">Конденсатор</div><div class="hint">C = Q / U</div></div></div>
+    <div class="card" onclick="openTool('lens')"><div class="emoji">🔦</div><div><div class="name">Линза</div><div class="hint">1/F = 1/d + 1/f</div></div></div>
+    <div class="card" onclick="openTool('heat')"><div class="emoji">🌡️</div><div><div class="name">Теплоёмкость</div><div class="hint">Q = c·m·Δt</div></div></div>
   </div>
 </section>
 
-<!-- ================= ИНФОРМАТИКА ================= -->
+<!-- ИНФОРМАТИКА -->
 <section id="informatics">
-  <div class="section-head">
-    <div class="section-icon">💻</div>
-    <h2>Информатика и программирование</h2>
-  </div>
+  <div class="section-head"><div class="section-icon">💻</div><h2>Информатика и программирование</h2></div>
   <p class="section-sub">15 инструментов для кода, алгоритмов и логики</p>
   <div class="divider"></div>
   <div class="grid">
-    <div class="card"><div class="emoji">💻</div><div><div class="name">Редактор кода с подсветкой синтаксиса</div><div class="hint">Python, JS, C++</div></div></div>
-    <div class="card"><div class="emoji">🔢</div><div><div class="name">Калькулятор систем счисления</div><div class="hint">2, 8, 10, 16</div></div></div>
-    <div class="card"><div class="emoji">📊</div><div><div class="name">Визуализатор алгоритмов сортировки</div><div class="hint">Пузырёк, быстрая, слиянием</div></div></div>
-    <div class="card"><div class="emoji">🔣</div><div><div class="name">Симулятор логических схем</div><div class="hint">И, ИЛИ, НЕ, триггеры</div></div></div>
-    <div class="card"><div class="emoji">✅</div><div><div class="name">Тренажёр по таблицам истинности</div><div class="hint">Логические выражения</div></div></div>
-    <div class="card"><div class="emoji">🔀</div><div><div class="name">Калькулятор битовых операций</div><div class="hint">AND, OR, XOR, сдвиги</div></div></div>
-    <div class="card"><div class="emoji">🌲</div><div><div class="name">Визуализатор структур данных</div><div class="hint">Стек, очередь, дерево, граф</div></div></div>
-    <div class="card"><div class="emoji">⏱️</div><div><div class="name">Калькулятор сложности алгоритмов</div><div class="hint">О-большое</div></div></div>
-    <div class="card"><div class="emoji">🔍</div><div><div class="name">Редактор регулярных выражений</div><div class="hint">Проверка и объяснение</div></div></div>
-    <div class="card"><div class="emoji">🗺️</div><div><div class="name">Генератор блок-схем</div><div class="hint">Алгоритмы наглядно</div></div></div>
-    <div class="card"><div class="emoji">🗄️</div><div><div class="name">Тренажёр по SQL-запросам</div><div class="hint">SELECT, JOIN, GROUP BY</div></div></div>
-    <div class="card"><div class="emoji">🗂️</div><div><div class="name">Визуализатор кодировок и файлов</div><div class="hint">ASCII, Unicode, биты</div></div></div>
-    <div class="card"><div class="emoji">#️⃣</div><div><div class="name">Калькулятор хеш-функций</div><div class="hint">MD5, SHA, CRC</div></div></div>
-    <div class="card"><div class="emoji">🧠</div><div><div class="name">Симулятор нейронной сети</div><div class="hint">Основы ИИ</div></div></div>
-    <div class="card"><div class="emoji">🐍</div><div><div class="name">Интерактивный курс по основам Python</div><div class="hint">Практика с нуля</div></div></div>
+    <div class="card" onclick="openTool('numsys')"><div class="emoji">🔢</div><div><div class="name">Системы счисления</div><div class="hint">2, 8, 10, 16</div></div></div>
+    <div class="card" onclick="openTool('info')"><div class="emoji">📦</div><div><div class="name">Объём информации</div><div class="hint">бит, байт, КБ, МБ, ГБ</div></div></div>
+    <div class="card" onclick="openTool('logic')"><div class="emoji">🔣</div><div><div class="name">Логические операции</div><div class="hint">AND, OR, NOT, XOR</div></div></div>
+    <div class="card" onclick="openTool('truthtable')"><div class="emoji">✅</div><div><div class="name">Таблица истинности</div><div class="hint">Для A и B</div></div></div>
+    <div class="card" onclick="openTool('encoding')"><div class="emoji">🔤</div><div><div class="name">Кодирование текста</div><div class="hint">Символы → ASCII-коды</div></div></div>
+    <div class="card" onclick="openTool('binadd')"><div class="emoji">➕</div><div><div class="name">Двоичное сложение</div><div class="hint">1010 + 1100</div></div></div>
+    <div class="card" onclick="openTool('caesar')"><div class="emoji">🔐</div><div><div class="name">Шифр Цезаря</div><div class="hint">Сдвиг алфавита</div></div></div>
+    <div class="card" onclick="openTool('complexity')"><div class="emoji">⏱️</div><div><div class="name">Сложность алгоритмов</div><div class="hint">O-большое</div></div></div>
+    <div class="card" onclick="openTool('sqlref')"><div class="emoji">🗄️</div><div><div class="name">SQL-справочник</div><div class="hint">SELECT, INSERT, UPDATE</div></div></div>
+    <div class="card" onclick="openTool('pythonref')"><div class="emoji">🐍</div><div><div class="name">Python-шпаргалка</div><div class="hint">Базовый синтаксис</div></div></div>
+    <div class="card" onclick="openTool('datastruct')"><div class="emoji">🌲</div><div><div class="name">Структуры данных</div><div class="hint">Стек, очередь, дерево</div></div></div>
+    <div class="card" onclick="openTool('graphs')"><div class="emoji">🕸️</div><div><div class="name">Графы и деревья</div><div class="hint">BFS, DFS</div></div></div>
+    <div class="card" onclick="openTool('networks')"><div class="emoji">🌐</div><div><div class="name">IP и подсети</div><div class="hint">Адрес сети по маске</div></div></div>
+    <div class="card" onclick="openTool('algo')"><div class="emoji">📋</div><div><div class="name">Базовые алгоритмы</div><div class="hint">Следование, ветвление, цикл</div></div></div>
+    <div class="card" onclick="openTool('units')"><div class="emoji">📊</div><div><div class="name">Единицы информации</div><div class="hint">Соотношения</div></div></div>
   </div>
 </section>
 
-<!-- ================= ПОДДЕРЖКА ================= -->
+<!-- ПОДДЕРЖКА -->
 <div class="support">
   <div class="support-box">
     <h3>Поддержать проект</h3>
     <p>Сайт создаётся и развивается бесплатно, без рекламы и регистрации. Если инструменты помогли тебе — можешь поддержать разработку.</p>
-    <a class="btn-boosty" href="https://boosty.to/" target="_blank" rel="noopener">
-      ❤️ Поддержать
-    </a>
+    <a class="btn-boosty" href="https://boosty.to/" target="_blank" rel="noopener">❤️ Поддержать</a>
   </div>
 </div>
 
-<!-- ================= ПОДВАЛ ================= -->
+<!-- ПОДВАЛ -->
 <footer>
   <div class="footer-inner">
     <h3>Зачем нужен этот сайт</h3>
@@ -506,43 +261,992 @@
 
 <button id="toTop" title="Наверх">↑</button>
 
+<!-- МОДАЛЬНОЕ ОКНО -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Инструмент</h3>
+      <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
 <script>
-  /* Плавная прокрутка с учётом отступов (CSS уже даёт smooth) */
-  document.querySelectorAll('.nav-buttons a').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
-    });
+/* ============ ПЛАВНАЯ ПРОКРУТКА ============ */
+document.querySelectorAll('.nav-buttons a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(link.getAttribute('href'));
+    if (t) t.scrollIntoView({behavior:'smooth', block:'start'});
   });
+});
 
-  /* Появление карточек при прокрутке */
-  const cards = document.querySelectorAll('.card');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 25);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
-  cards.forEach(card => observer.observe(card));
+/* ============ КНОПКА НАВЕРХ ============ */
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', () => toTop.classList.toggle('show', window.scrollY > 500));
+toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
-  /* Клик по карточке */
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      const name = card.querySelector('.name').textContent;
-      alert('🔧 «' + name + '»\n\nИнструмент скоро появится. Сейчас доступен только дизайн и каталог.');
-    });
+/* ============ МОДАЛЬНОЕ ОКНО ============ */
+const modalOverlay = document.getElementById('modalOverlay');
+const modalTitle = document.getElementById('modalTitle');
+const modalBody = document.getElementById('modalBody');
+
+function openModal(title, html) {
+  modalTitle.textContent = title;
+  modalBody.innerHTML = html;
+  modalOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  modalOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ============ ХЕЛПЕРЫ ФОРМ ============ */
+const F = {
+  inp: (label, id, type='number', attrs='') =>
+    `<div class="form-group"><label>${label}</label><input type="${type}" id="${id}" ${attrs}></div>`,
+  row: (a, b) => `<div class="form-row">${a}${b}</div>`,
+  sel: (label, id, opts) =>
+    `<div class="form-group"><label>${label}</label><select id="${id}">${opts.map(o=>`<option value="${o.v}">${o.t}</option>`).join('')}</select></div>`,
+  res: (label, value, sub='') =>
+    `<div class="result-box"><div class="label">${label}</div><div class="value">${value}</div>${sub?`<div class="sub">${sub}</div>`:''}</div>`,
+  btn: (text, onclick) => `<button class="btn-primary" onclick="${onclick}">${text}</button>`,
+  info: (title, text) => `<div class="info-block"><h4>${title}</h4><p>${text}</p></div>`
+};
+const g = id => parseFloat(document.getElementById(id)?.value) || 0;
+const gv = id => document.getElementById(id)?.value || '';
+const setOut = (html) => { document.getElementById('out').innerHTML = html; };
+const out = (label, value, sub='') => setOut(F.res(label, value, sub));
+
+/* ============ КАЛЬКУЛЯТОРЫ ============ */
+const CALC = {
+
+  /* --- АЛГЕБРА --- */
+  eq: {
+    render: () => F.inp('Коэффициент a','in_a') + F.inp('Свободный член b','in_b') + F.inp('Правая часть c','in_c') +
+      `<p style="font-size:13px;color:var(--muted);margin-bottom:12px">Уравнение: a·x + b = c</p>` +
+      F.btn('Решить','runEq()') + `<div id="out"></div>`
+  },
+  frac: {
+    render: () => F.sel('Операция','op',[{v:'+',t:'Сложение'},{v:'-',t:'Вычитание'},{v:'*',t:'Умножение'},{v:'/',t:'Деление'}]) +
+      F.row(F.inp('Числитель 1','n1'), F.inp('Знаменатель 1','d1')) +
+      F.row(F.inp('Числитель 2','n2'), F.inp('Знаменатель 2','d2')) +
+      F.btn('Вычислить','runFrac()') + `<div id="out"></div>`
+  },
+  matrix: {
+    render: () => F.row(F.inp('a₁₁','m11'), F.inp('a₁₂','m12')) +
+      F.row(F.inp('a₂₁','m21'), F.inp('a₂₂','m22')) +
+      F.btn('Определитель, след, обратная','runMatrix()') + `<div id="out"></div>`
+  },
+  graph: {
+    render: () => `<p style="font-size:14px;color:var(--muted);margin-bottom:12px">График функции y = x²</p>` +
+      `<canvas id="gcan" class="graph" width="520" height="240"></canvas>` +
+      `<div style="margin-top:12px">${F.btn('Построить','drawGraph()')}</div>`
+  },
+  sys: {
+    render: () => `<p style="font-size:13px;color:var(--muted);margin-bottom:12px">a₁·x + b₁·y = c₁<br>a₂·x + b₂·y = c₂</p>` +
+      F.row(F.inp('a₁','s1'), F.inp('b₁','s2')) +
+      F.row(F.inp('c₁','s3'), F.inp('a₂','s4')) +
+      F.row(F.inp('b₂','s5'), F.inp('c₂','s6')) +
+      F.btn('Решить','runSys()') + `<div id="out"></div>`
+  },
+  integral: {
+    render: () => F.sel('Операция','iop',[{v:'int',t:'Интеграл ∫f(x)dx'},{v:'der',t:'Производная f\'(x)'}]) +
+      F.inp('Функция f(x)','f_str','text','placeholder="x*x" value="x*x"') +
+      F.row(F.inp('От a','ia'), F.inp('До b / точка x','ib')) +
+      F.btn('Вычислить','runIntegral()') + `<div id="out"></div>`
+  },
+  disc: {
+    render: () => F.inp('a','d_a','number','value="1"') + F.inp('b','d_b','number','value="-5"') + F.inp('c','d_c','number','value="6"') +
+      `<p style="font-size:13px;color:var(--muted);margin-bottom:12px">Уравнение: ax² + bx + c = 0</p>` +
+      F.btn('Найти корни','runDisc()') + `<div id="out"></div>`
+  },
+  percent: {
+    render: () => F.inp('Число','pn') + F.inp('Процент (%)','pp') +
+      F.btn('Посчитать','runPercent()') + `<div id="out"></div>`
+  },
+  power: {
+    render: () => F.row(F.inp('Основание a','pw_a'), F.inp('Показатель n','pw_n')) +
+      F.btn('aⁿ и √a','runPower()') + `<div id="out"></div>`
+  },
+  complex: {
+    render: () => F.row(F.inp('Re₁','cr1'), F.inp('Im₁','ci1')) +
+      F.row(F.inp('Re₂','cr2'), F.inp('Im₂','ci2')) +
+      F.sel('Операция','cop',[{v:'+',t:'Сложение'},{v:'-',t:'Вычитание'},{v:'*',t:'Умножение'}]) +
+      F.btn('Вычислить','runComplex()') + `<div id="out"></div>`
+  },
+  simplify: {
+    render: () => F.inp('Выражение','ex','text','placeholder="(x+2)*(x-2)" value="(x+2)*(x-2)"') +
+      F.btn('Упростить','runSimplify()') + `<div id="out"></div>`
+  },
+  limit: {
+    render: () => F.inp('Функция f(x)','lf','text','placeholder="x*x" value="x*x"') +
+      F.inp('x →','lx','number','value="2"') +
+      F.btn('Приблизить','runLimit()') + `<div id="out"></div>`
+  },
+  trig: {
+    render: () => F.sel('Функция','tf',[{v:'sin',t:'sin'},{v:'cos',t:'cos'},{v:'tan',t:'tan'},{v:'asin',t:'arcsin'},{v:'acos',t:'arccos'}]) +
+      F.inp('Значение (угол в градусах или число)','td','number','value="30"') +
+      F.btn('Вычислить','runTrig()') + `<div id="out"></div>`
+  },
+  factor: {
+    render: () => F.inp('Натуральное число','fn','number','value="360"') +
+      F.btn('Разложить на простые','runFactor()') + `<div id="out"></div>`
+  },
+  genrand: {
+    render: () => F.row(F.inp('От','r_a','number','value="1"'), F.inp('До','r_b','number','value="100"')) +
+      F.inp('Сколько чисел','r_c','number','value="10"') +
+      F.btn('Сгенерировать','runGenrand()') + `<div id="out"></div>`
+  },
+
+  /* --- ГЕОМЕТРИЯ --- */
+  tri: {
+    render: () => F.row(F.inp('Сторона a','t_a'), F.inp('Сторона b','t_b')) +
+      F.inp('Сторона c','t_c') +
+      F.btn('Площадь (Герон)','runTri()') + `<div id="out"></div>`
+  },
+  circle: {
+    render: () => F.inp('Радиус r','c_r') +
+      F.btn('Площадь и длина','runCircle()') + `<div id="out"></div>`
+  },
+  cone: {
+    render: () => F.row(F.inp('Радиус r','co_r'), F.inp('Высота h','co_h')) +
+      F.btn('V и S боковой','runCone()') + `<div id="out"></div>`
+  },
+  rect: {
+    render: () => F.row(F.inp('Сторона a','rc_a'), F.inp('Сторона b','rc_b')) +
+      F.btn('Вычислить','runRect()') + `<div id="out"></div>`
+  },
+  sphere: {
+    render: () => F.inp('Радиус r','sp_r') +
+      F.btn('V и S','runSphere()') + `<div id="out"></div>`
+  },
+  cyl: {
+    render: () => F.row(F.inp('Радиус r','cy_r'), F.inp('Высота h','cy_h')) +
+      F.btn('V и S полной','runCyl()') + `<div id="out"></div>`
+  },
+  vector: {
+    render: () => F.row(F.inp('x₁','vx1'), F.inp('y₁','vy1')) +
+      F.row(F.inp('x₂','vx2'), F.inp('y₂','vy2')) +
+      F.sel('Операция','vop',[{v:'add',t:'Сложение'},{v:'len',t:'Длина обоих'},{v:'dot',t:'Скалярное произведение'}]) +
+      F.btn('Вычислить','runVector()') + `<div id="out"></div>`
+  },
+  dist: {
+    render: () => F.row(F.inp('x₁','dx1'), F.inp('y₁','dy1')) +
+      F.row(F.inp('x₂','dx2'), F.inp('y₂','dy2')) +
+      F.btn('Расстояние','runDist()') + `<div id="out"></div>`
+  },
+  angle: {
+    render: () => F.inp('Значение','av') +
+      F.sel('Единица','au',[{v:'d',t:'Градусы → радианы'},{v:'r',t:'Радианы → градусы'}]) +
+      F.btn('Перевести','runAngle()') + `<div id="out"></div>`
+  },
+  pyth: {
+    render: () => F.sel('Что найти','pyw',[{v:'c',t:'Гипотенузу c'},{v:'a',t:'Катет a'}]) +
+      F.row(F.inp('Катет a','py_a'), F.inp('Катет b / гипотенуза c','py_b')) +
+      F.btn('Найти','runPyth()') + `<div id="out"></div>`
+  },
+  poly: {
+    render: () => F.row(F.inp('Число сторон n','pn'), F.inp('Длина стороны a','pa')) +
+      F.btn('Площадь','runPoly()') + `<div id="out"></div>`
+  },
+  trap: {
+    render: () => F.row(F.inp('Основание a','tp_a'), F.inp('Основание b','tp_b')) +
+      F.inp('Высота h','tp_h') +
+      F.btn('Площадь','runTrap()') + `<div id="out"></div>`
+  },
+  sector: {
+    render: () => F.row(F.inp('Радиус r','sec_r'), F.inp('Угол (°)','sec_a')) +
+      F.btn('Площадь и дуга','runSector()') + `<div id="out"></div>`
+  },
+  ellipse: {
+    render: () => F.row(F.inp('Полуось a','el_a'), F.inp('Полуось b','el_b')) +
+      F.btn('Площадь','runEllipse()') + `<div id="out"></div>`
+  },
+  cube: {
+    render: () => F.inp('Ребро a','cu_a') +
+      F.btn('V, S, диагональ','runCube()') + `<div id="out"></div>`
+  },
+
+  /* --- ВЕРОЯТНОСТЬ --- */
+  prob: {
+    render: () => F.row(F.inp('Благоприятные m','pr_m'), F.inp('Всего исходов n','pr_n')) +
+      F.btn('P(A)','runProb()') + `<div id="out"></div>`
+  },
+  comb: {
+    render: () => F.sel('Функция','cbf',[{v:'c',t:'Сочетания C(n,k)'},{v:'a',t:'Размещения A(n,k)'},{v:'p',t:'Перестановки P(n)'}]) +
+      F.row(F.inp('n','cb_n'), F.inp('k','cb_k')) +
+      F.btn('Вычислить','runComb()') + `<div id="out"></div>`
+  },
+  dice: {
+    render: () => F.inp('Количество кубиков (1–10)','di_n','number','min="1" max="10" value="2"') +
+      F.btn('Бросить','runDice()') + `<div id="out"></div>`
+  },
+  coin: {
+    render: () => F.btn('Подбросить','runCoin()') + `<div id="out"></div>`
+  },
+  wheel: {
+    render: () => F.inp('Варианты через запятую','wh_v','text','value="Да, Нет, Может быть"') +
+      F.btn('Крутить','runWheel()') + `<div id="out"></div>`
+  },
+  binom: {
+    render: () => F.row(F.inp('n — испытаний','bn_n','number','value="10"'), F.inp('k — успехов','bn_k','number','value="3"')) +
+      F.inp('p — вероятность успеха','bn_p','number','step="0.01" value="0.5"') +
+      F.btn('P(X = k)','runBinom()') + `<div id="out"></div>`
+  },
+  normal: {
+    render: () => F.row(F.inp('Среднее μ','nm_m','number','value="0"'), F.inp('σ','nm_s','number','value="1"')) +
+      F.inp('x','nm_x','number','value="0"') +
+      F.btn('Плотность и график','runNormal()') +
+      `<canvas id="nm_can" class="graph" width="520" height="200"></canvas>` +
+      `<div id="out"></div>`
+  },
+  stat: {
+    render: () => F.inp('Числа через запятую','st_v','text','value="5, 3, 8, 12, 7, 9, 4"') +
+      F.btn('Статистика','runStat()') + `<div id="out"></div>`
+  },
+  tree: {
+    render: () => F.row(F.inp('P(A)','tr_pa','number','step="0.01" value="0.3"'), F.inp('P(B|A)','tr_pba','number','step="0.01" value="0.8"')) +
+      F.inp('P(B|¬A)','tr_pnba','number','step="0.01" value="0.2"') +
+      F.btn('Построить','runTree()') +
+      `<canvas id="tr_can" class="graph" width="520" height="220"></canvas>` +
+      `<div id="out"></div>`
+  },
+  exp: {
+    render: () => F.inp('Значения xᵢ','ex_x','text','value="1, 2, 3, 4, 5"') +
+      F.inp('Вероятности pᵢ','ex_p','text','value="0.1, 0.2, 0.4, 0.2, 0.1"') +
+      F.btn('E[X] и D[X]','runExp()') + `<div id="out"></div>`
+  },
+  freq: {
+    render: () => F.row(F.inp('Число событий m','fr_m'), F.inp('Число испытаний n','fr_n')) +
+      F.btn('Относительная частота','runFreq()') + `<div id="out"></div>`
+  },
+  rand: {
+    render: () => F.row(F.inp('От','rnd_a','number','value="1"'), F.inp('До','rnd_b','number','value="100"')) +
+      F.inp('Количество','rnd_c','number','value="10"') +
+      F.btn('Сгенерировать','runRand()') + `<div id="out"></div>`
+  },
+  walk: {
+    render: () => F.inp('Количество шагов','wk_n','number','value="200"') +
+      F.btn('Построить','runWalk()') +
+      `<canvas id="wk_can" class="graph" width="520" height="240"></canvas>`
+  },
+  bayes: {
+    render: () => F.row(F.inp('P(A)','by_pa','number','step="0.01" value="0.01"'), F.inp('P(B|A)','by_pba','number','step="0.01" value="0.99"')) +
+      F.inp('P(B|¬A)','by_pnba','number','step="0.01" value="0.05"') +
+      F.btn('P(A|B)','runBayes()') + `<div id="out"></div>`
+  },
+  uniform: {
+    render: () => F.row(F.inp('a','un_a','number','value="0"'), F.inp('b','un_b','number','value="10"')) +
+      F.inp('x','un_x','number','value="5"') +
+      F.btn('Плотность f(x)','runUniform()') + `<div id="out"></div>`
+  },
+
+  /* --- ФИЗИКА --- */
+  ohm: {
+    render: () => `<p style="font-size:13px;color:var(--muted);margin-bottom:12px">Заполни любые 2 поля из 4</p>` +
+      F.row(F.inp('Напряжение U (В)','oh_u'), F.inp('Сила тока I (А)','oh_i')) +
+      F.row(F.inp('Сопротивление R (Ом)','oh_r'), F.inp('Мощность P (Вт)','oh_p')) +
+      F.btn('Рассчитать','runOhm()') + `<div id="out"></div>`
+  },
+  convert: {
+    render: () => F.sel('Из','cv_f',[{v:'m',t:'Метры'},{v:'km',t:'Километры'},{v:'kg',t:'Килограммы'},{v:'g',t:'Граммы'},{v:'c',t:'°C'},{v:'f',t:'°F'}]) +
+      F.inp('Значение','cv_v','number','value="1"') +
+      F.sel('В','cv_t',[{v:'km',t:'Километры'},{v:'m',t:'Метры'},{v:'g',t:'Граммы'},{v:'kg',t:'Килограммы'},{v:'f',t:'°F'},{v:'c',t:'°C'}]) +
+      F.btn('Конвертировать','runConvert()') + `<div id="out"></div>`
+  },
+  energy: {
+    render: () => F.sel('Что найти','en_w',[{v:'ke',t:'Кинетическая E = mv²/2'},{v:'pe',t:'Потенциальная E = mgh'}]) +
+      F.row(F.inp('Масса m (кг)','en_m','number','value="1"'), F.inp('v (м/с) или h (м)','en_v','number','value="10"')) +
+      F.inp('g (м/с²)','en_g','number','value="9.8"') +
+      F.btn('Вычислить','runEnergy()') + `<div id="out"></div>`
+  },
+  kinem: {
+    render: () => F.sel('Что найти','kn_w',[{v:'s',t:'Путь s'},{v:'v',t:'Скорость v'},{v:'t',t:'Время t'}]) +
+      F.row(F.inp('v₀','kn_v0','number','value="0"'), F.inp('Ускорение a','kn_a','number','value="2"')) +
+      F.inp('Время t / скорость v / путь s','kn_t','number','value="5"') +
+      F.btn('Рассчитать','runKinem()') + `<div id="out"></div>`
+  },
+  pendulum: {
+    render: () => F.row(F.inp('Длина L (м)','pen_l','number','value="1"'), F.inp('g (м/с²)','pen_g','number','value="9.8"')) +
+      F.btn('Период T','runPend()') + `<div id="out"></div>`
+  },
+  gravity: {
+    render: () => F.row(F.inp('m₁ (кг)','gr_m1','number','value="5.97e24"'), F.inp('m₂ (кг)','gr_m2','number','value="7.35e22"')) +
+      F.inp('Расстояние r (м)','gr_r','number','value="3.84e8"') +
+      F.btn('Сила F','runGravity()') + `<div id="out"></div>`
+  },
+  pressure: {
+    render: () => F.row(F.inp('ρ (кг/м³)','pr_rho','number','value="1000"'), F.inp('h (м)','pr_h','number','value="5"')) +
+      F.inp('g','pr_g','number','value="9.8"') +
+      F.btn('P = ρgh','runPressure()') + `<div id="out"></div>`
+  },
+  density: {
+    render: () => F.row(F.inp('Масса m (кг)','den_m'), F.inp('Объём V (м³)','den_v')) +
+      F.btn('Плотность ρ','runDensity()') + `<div id="out"></div>`
+  },
+  work: {
+    render: () => F.row(F.inp('Сила F (Н)','wr_f'), F.inp('Путь s (м)','wr_s')) +
+      F.inp('Время t (с)','wr_t') +
+      F.btn('A и N','runWork()') + `<div id="out"></div>`
+  },
+  wave: {
+    render: () => `<p style="font-size:13px;color:var(--muted);margin-bottom:12px">Заполни 2 из 3 — найдём третье (v = λ·f)</p>` +
+      F.row(F.inp('Скорость v (м/с)','wv_v'), F.inp('Частота f (Гц)','wv_f')) +
+      F.inp('Длина волны λ (м)','wv_l') +
+      F.btn('Найти','runWave()') + `<div id="out"></div>`
+  },
+  mirror: {
+    render: () => F.inp('Радиус кривизны R (м)','mi_r') +
+      F.btn('Фокус F = R/2','runMirror()') + `<div id="out"></div>`
+  },
+  resist: {
+    render: () => F.inp('Удельное сопротивление ρ (Ом·м)','rs_rho','number','step="0.000000001" value="0.000000017"') +
+      F.row(F.inp('Длина L (м)','rs_l','number','value="100"'), F.inp('Площадь S (м²)','rs_s','number','step="0.000001" value="0.000001"')) +
+      F.btn('Сопротивление R','runResist()') + `<div id="out"></div>`
+  },
+  capac: {
+    render: () => F.row(F.inp('Заряд Q (Кл)','cap_q'), F.inp('Напряжение U (В)','cap_u')) +
+      F.btn('Ёмкость C','runCapac()') + `<div id="out"></div>`
+  },
+  lens: {
+    render: () => F.row(F.inp('Расстояние d (м)','le_d'), F.inp('Изображение f (м)','le_f')) +
+      F.btn('Фокус F','runLens()') + `<div id="out"></div>`
+  },
+  heat: {
+    render: () => F.row(F.inp('Масса m (кг)','ht_m'), F.inp('Удельная теплоёмкость c','ht_c','number','value="4200"')) +
+      F.inp('Δt (°C)','ht_dt') +
+      F.btn('Q = c·m·Δt','runHeat()') + `<div id="out"></div>`
+  },
+
+  /* --- ИНФОРМАТИКА --- */
+  numsys: {
+    render: () => F.inp('Число','ns_num','text','value="255"') +
+      F.row(
+        F.sel('Из системы','ns_from',[{v:'10',t:'Десятичная'},{v:'2',t:'Двоичная'},{v:'8',t:'Восьмеричная'},{v:'16',t:'Шестнадцатеричная'}]),
+        F.sel('В систему','ns_to',[{v:'2',t:'Двоичная'},{v:'8',t:'Восьмеричная'},{v:'10',t:'Десятичная'},{v:'16',t:'Шестнадцатеричная'}])
+      ) + F.btn('Перевести','runNS()') + `<div id="out"></div>`
+  },
+  info: {
+    render: () => F.inp('Значение','ib_v','number','value="1"') +
+      F.sel('Единица','ib_u',[{v:'b',t:'бит'},{v:'B',t:'байт'},{v:'KB',t:'КБ'},{v:'MB',t:'МБ'},{v:'GB',t:'ГБ'}]) +
+      F.btn('Перевести','runInfo()') + `<div id="out"></div>`
+  },
+  logic: {
+    render: () => F.sel('Операция','lo_op',[{v:'and',t:'И (AND)'},{v:'or',t:'ИЛИ (OR)'},{v:'not',t:'НЕ (NOT)'},{v:'xor',t:'Исключающее ИЛИ (XOR)'}]) +
+      F.row(F.inp('A (0 или 1)','lo_a','number','min="0" max="1" value="1"'), F.inp('B (0 или 1)','lo_b','number','min="0" max="1" value="0"')) +
+      F.btn('Вычислить','runLogic()') + `<div id="out"></div>`
+  },
+  truthtable: {
+    render: () => F.sel('Выражение','tt_e',[{v:'and',t:'A ∧ B'},{v:'or',t:'A ∨ B'},{v:'impl',t:'A → B'},{v:'eq',t:'A ↔ B'}]) +
+      F.btn('Показать таблицу','runTT()') + `<div id="out"></div>`
+  },
+  encoding: {
+    render: () => F.inp('Текст','ct_t','text','value="Привет"') +
+      F.btn('В ASCII/Unicode коды','runEncoding()') + `<div id="out"></div>`
+  },
+  binadd: {
+    render: () => F.row(F.inp('Число 1 (двоичное)','bs_a','text','value="1010"'), F.inp('Число 2 (двоичное)','bs_b','text','value="1100"')) +
+      F.btn('Сложить','runBinAdd()') + `<div id="out"></div>`
+  },
+  caesar: {
+    render: () => F.inp('Текст','cz_t','text','value="Привет"') +
+      F.inp('Сдвиг','cz_s','number','value="3"') +
+      F.sel('Направление','cz_d',[{v:'enc',t:'Зашифровать'},{v:'dec',t:'Расшифровать'}]) +
+      F.btn('Применить','runCaesar()') + `<div id="out"></div>`
+  },
+  complexity: {
+    render: () => F.inp('Число операций n','tc_n','number','value="1000"') +
+      F.btn('Оценить','runComplexity()') + `<div id="out"></div>`
+  },
+  sqlref: {
+    render: () => F.info('SQL-операторы',
+      '<code style="font-size:13px">SELECT * FROM table WHERE cond;</code><br>' +
+      '<code style="font-size:13px">INSERT INTO table (col) VALUES (val);</code><br>' +
+      '<code style="font-size:13px">UPDATE table SET col=val WHERE cond;</code><br>' +
+      '<code style="font-size:13px">DELETE FROM table WHERE cond;</code><br>' +
+      '<code style="font-size:13px">SELECT a, COUNT(*) FROM t GROUP BY a;</code>')
+  },
+  pythonref: {
+    render: () => F.info('Python — базовый синтаксис',
+      '<code style="font-size:13px">x = 10 &nbsp;# переменная</code><br>' +
+      '<code style="font-size:13px">print("Привет")</code><br>' +
+      '<code style="font-size:13px">if x &gt; 5:</code><br>' +
+      '<code style="font-size:13px">&nbsp;&nbsp;&nbsp;&nbsp;print("больше")</code><br>' +
+      '<code style="font-size:13px">for i in range(5):</code><br>' +
+      '<code style="font-size:13px">&nbsp;&nbsp;&nbsp;&nbsp;print(i)</code><br>' +
+      '<code style="font-size:13px">def f(a, b): return a + b</code>')
+  },
+  datastruct: {
+    render: () => F.info('Структуры данных',
+      '<b>Стек</b> — LIFO (последний вошёл — первый вышел)<br>' +
+      '<b>Очередь</b> — FIFO (первый вошёл — первый вышел)<br>' +
+      '<b>Связный список</b> — узлы с указателями<br>' +
+      '<b>Дерево</b> — иерархия без циклов<br>' +
+      '<b>Граф</b> — вершины и рёбра')
+  },
+  graphs: {
+    render: () => F.info('Обход графа',
+      '<b>BFS (в ширину)</b> — по уровням, использует очередь<br>' +
+      '<b>DFS (в глубину)</b> — до упора вглубь, использует стек или рекурсию<br>' +
+      '<b>Дерево</b> — граф без циклов с одним корнем')
+  },
+  networks: {
+    render: () => F.row(F.inp('IP-адрес','ip_a','text','value="192.168.1.10"'), F.inp('Маска','ip_m','text','value="255.255.255.0"')) +
+      F.btn('Найти адрес сети','runNetworks()') + `<div id="out"></div>`
+  },
+  algo: {
+    render: () => F.info('Три базовые алгоритмические структуры',
+      '<b>Следование</b> — команды выполняются по порядку.<br>' +
+      '<b>Ветвление</b> — если условие истинно, выполняется один блок, иначе другой.<br>' +
+      '<b>Цикл</b> — блок команд повторяется пока условие истинно.')
+  },
+  units: {
+    render: () => F.info('Единицы информации',
+      '1 байт = 8 бит<br>1 КБ = 1024 байт<br>1 МБ = 1024 КБ<br>' +
+      '1 ГБ = 1024 МБ<br>1 ТБ = 1024 ГБ')
+  }
+};
+
+/* ============ ОТКРЫТИЕ ИНСТРУМЕНТА ============ */
+const TOOL_TITLES = {
+  eq:'Калькулятор уравнений', frac:'Калькулятор дробей', matrix:'Калькулятор матриц 2×2',
+  graph:'Графический калькулятор', sys:'Система линейных уравнений', integral:'Интегралы и производные',
+  disc:'Дискриминант и квадратные уравнения', percent:'Калькулятор процентов', power:'Степени и корни',
+  complex:'Комплексные числа', simplify:'Упроститель выражений', limit:'Калькулятор пределов',
+  trig:'Тригонометрия', factor:'Разложение на множители', genrand:'Генератор случайных чисел',
+  tri:'Треугольник', circle:'Окружность', cone:'Конус', rect:'Прямоугольник', sphere:'Шар',
+  cyl:'Цилиндр', vector:'Векторы', dist:'Расстояние между точками', angle:'Перевод углов',
+  pyth:'Теорема Пифагора', poly:'Правильный многоугольник', trap:'Трапеция', sector:'Сектор круга',
+  ellipse:'Эллипс', cube:'Куб',
+  prob:'Вероятность события', comb:'Сочетания и перестановки', dice:'Игральные кости', coin:'Монетка',
+  wheel:'Колесо фортуны', binom:'Биномиальное распределение', normal:'Нормальное распределение',
+  stat:'Статистика выборки', tree:'Дерево вероятностей', exp:'Мат. ожидание и дисперсия',
+  freq:'Относительная частота', rand:'Генератор случайных чисел', walk:'Случайное блуждание',
+  bayes:'Формула Байеса', uniform:'Равномерное распределение',
+  ohm:'Закон Ома', convert:'Конвертер величин', energy:'Энергия', kinem:'Кинематика',
+  pendulum:'Маятник', gravity:'Гравитация', pressure:'Давление', density:'Плотность',
+  work:'Работа и мощность', wave:'Волны', mirror:'Зеркало', resist:'Сопротивление',
+  capac:'Конденсатор', lens:'Линза', heat:'Теплоёмкость',
+  numsys:'Системы счисления', info:'Объём информации', logic:'Логические операции',
+  truthtable:'Таблица истинности', encoding:'Кодирование текста', binadd:'Двоичное сложение',
+  caesar:'Шифр Цезаря', complexity:'Сложность алгоритмов', sqlref:'SQL-справочник',
+  pythonref:'Python-шпаргалка', datastruct:'Структуры данных', graphs:'Графы и деревья',
+  networks:'IP и подсети', algo:'Алгоритмические структуры', units:'Единицы информации'
+};
+
+function openTool(id) {
+  const t = CALC[id];
+  if (!t) { openModal('Инструмент', '<p>Инструмент в разработке</p>'); return; }
+  openModal(TOOL_TITLES[id] || 'Инструмент', t.render());
+  // авто-построение графиков после рендера
+  if (id === 'graph') setTimeout(drawGraph, 60);
+  if (id === 'normal') setTimeout(() => runNormal(), 60);
+  if (id === 'tree') setTimeout(() => runTree(), 60);
+  if (id === 'walk') setTimeout(() => runWalk(), 60);
+}
+
+/* ============ МАТЕМАТИЧЕСКИЕ ФУНКЦИИ ============ */
+function gcd(a,b){return b?gcd(b,a%b):Math.abs(a);}
+function fact(n){let r=1;for(let i=2;i<=n;i++)r*=i;return r;}
+function Cnk(n,k){if(k<0||k>n)return 0;return fact(n)/(fact(k)*fact(n-k));}
+function Ank(n,k){if(k<0||k>n)return 0;return fact(n)/fact(n-k);}
+
+/* ============ АЛГЕБРА ============ */
+window.runEq = function(){
+  const a=g('in_a'),b=g('in_b'),c=g('in_c');
+  if(!a){out('Ошибка','a не может быть 0');return;}
+  const x=(c-b)/a;
+  out('x = '+x.toFixed(4), 'Проверка: '+a+'·('+x.toFixed(2)+') + '+b+' = '+(a*x+b).toFixed(2));
+};
+window.runFrac = function(){
+  const n1=g('n1'),d1=g('d1'),n2=g('n2'),d2=g('d2');
+  const op=document.getElementById('op').value;
+  if(!d1||!d2){out('Ошибка','Знаменатель не может быть 0');return;}
+  let nr,dr;
+  switch(op){
+    case '+':nr=n1*d2+n2*d1;dr=d1*d2;break;
+    case '-':nr=n1*d2-n2*d1;dr=d1*d2;break;
+    case '*':nr=n1*n2;dr=d1*d2;break;
+    case '/':nr=n1*d2;dr=d1*n2;break;
+  }
+  const gg=gcd(nr,dr);
+  out((nr/gg)+' / '+(dr/gg), 'Десятичное значение: '+(nr/dr).toFixed(4));
+};
+window.runMatrix = function(){
+  const a=g('m11'),b=g('m12'),c=g('m21'),d=g('m22');
+  const det=a*d-b*c, trace=a+d;
+  let inv='матрица вырождена (det = 0)';
+  if(det!==0) inv=(d/det).toFixed(3)+'&nbsp;&nbsp;'+(-b/det).toFixed(3)+'<br>'+(-c/det).toFixed(3)+'&nbsp;&nbsp;'+(a/det).toFixed(3);
+  out('Определитель: '+det.toFixed(4), 'След: '+trace+'<br>Обратная:<br>'+inv);
+};
+window.drawGraph = function(){
+  const c=document.getElementById('gcan'); if(!c)return;
+  const ctx=c.getContext('2d'), w=c.width, h=c.height;
+  ctx.clearRect(0,0,w,h);
+  ctx.strokeStyle='#e6e9f2'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(0,h/2); ctx.lineTo(w,h/2); ctx.moveTo(w/2,0); ctx.lineTo(w/2,h); ctx.stroke();
+  ctx.strokeStyle='#5b5bff'; ctx.lineWidth=2.5;
+  ctx.beginPath();
+  for(let px=0;px<w;px++){
+    const x=(px-w/2)/40;
+    const y=x*x;
+    const py=h/2-y*5;
+    if(px===0)ctx.moveTo(px,py);else ctx.lineTo(px,py);
+  }
+  ctx.stroke();
+};
+window.runSys = function(){
+  const a1=g('s1'),b1=g('s2'),c1=g('s3'),a2=g('s4'),b2=g('s5'),c2=g('s6');
+  const det=a1*b2-a2*b1;
+  if(Math.abs(det)<1e-9){out('Решения нет','det = 0');return;}
+  const x=(c1*b2-c2*b1)/det, y=(a1*c2-a2*c1)/det;
+  out('x = '+x.toFixed(4)+', y = '+y.toFixed(4));
+};
+window.runIntegral = function(){
+  const mode=document.getElementById('iop').value;
+  const expr=gv('f_str').replace(/\^/g,'**');
+  let f;
+  try{ f=new Function('x','return '+expr); }catch(e){out('Ошибка','Неверное выражение');return;}
+  const a=g('ia'), b=g('ib');
+  if(mode==='der'){
+    const h=1e-5;
+    const d=(f(a+h)-f(a-h))/(2*h);
+    out('f\'('+a+') ≈ '+d.toFixed(6));
+  } else {
+    const n=1000, h=(b-a)/n;
+    let s=0;
+    for(let i=0;i<n;i++) s+=f(a+i*h);
+    s*=h;
+    out('∫ от '+a+' до '+b+' ≈ '+s.toFixed(6), 'Метод прямоугольников, n=1000');
+  }
+};
+window.runDisc = function(){
+  const a=g('d_a'),b=g('d_b'),c=g('d_c');
+  const D=b*b-4*a*c;
+  let txt='D = '+D.toFixed(2)+'<br>';
+  if(D<0) txt+='Корней нет (D &lt; 0)';
+  else if(D===0){const x=-b/(2*a); txt+='x = '+x.toFixed(4);}
+  else{const x1=(-b+Math.sqrt(D))/(2*a), x2=(-b-Math.sqrt(D))/(2*a); txt+='x₁ = '+x1.toFixed(4)+'<br>x₂ = '+x2.toFixed(4);}
+  out('Решение', txt);
+};
+window.runPercent = function(){ out((g('pn')*g('pp')/100).toFixed(4), g('pp')+'% от '+g('pn')); };
+window.runPower = function(){
+  const a=g('pw_a'), n=g('pw_n');
+  const r=Math.pow(a,n);
+  const root = a>=0 ? Math.sqrt(a).toFixed(4) : 'комплексное';
+  out('aⁿ = '+r.toFixed(6), '√a = '+root);
+};
+window.runComplex = function(){
+  const r1=g('cr1'),i1=g('ci1'),r2=g('cr2'),i2=g('ci2');
+  const op=document.getElementById('cop').value;
+  let rr,ri;
+  switch(op){
+    case '+':rr=r1+r2;ri=i1+i2;break;
+    case '-':rr=r1-r2;ri=i1-i2;break;
+    case '*':rr=r1*r2-i1*i2;ri=r1*i2+r2*i1;break;
+  }
+  out(rr.toFixed(3)+(ri>=0?' + ':' - ')+Math.abs(ri).toFixed(3)+' i');
+};
+window.runSimplify = function(){
+  const e=gv('ex').toLowerCase().replace(/\s/g,'');
+  let r=e;
+  if(e==='(x+2)*(x-2)') r='x² − 4';
+  else if(e==='2*(x+3)') r='2x + 6';
+  else if(e==='(x+1)*(x+1)'||e==='(x+1)^2') r='x² + 2x + 1';
+  else if(e==='(a+b)^2') r='a² + 2ab + b²';
+  else if(e==='(a-b)^2') r='a² − 2ab + b²';
+  out(r, 'Демо-режим: поддержаны основные формулы сокращённого умножения');
+};
+window.runLimit = function(){
+  let f;
+  try{ f=new Function('x','return '+gv('lf').replace(/\^/g,'**')); }
+  catch(e){out('Ошибка','Неверное выражение');return;}
+  const x0=g('lx'), h=0.0001;
+  const v=(f(x0+h)+f(x0-h))/2;
+  out('lim ≈ '+v.toFixed(5), 'Приближение с двух сторон');
+};
+window.runTrig = function(){
+  const f=document.getElementById('tf').value, v=g('td');
+  let r;
+  if(f==='sin') r=Math.sin(v*Math.PI/180);
+  else if(f==='cos') r=Math.cos(v*Math.PI/180);
+  else if(f==='tan') r=Math.tan(v*Math.PI/180);
+  else if(f==='asin') r=Math.asin(v)*180/Math.PI;
+  else if(f==='acos') r=Math.acos(v)*180/Math.PI;
+  out(r.toFixed(6));
+};
+window.runFactor = function(){
+  const n=Math.abs(Math.round(g('fn')));
+  if(n<2){out('Ошибка','Введи число ≥ 2');return;}
+  let t=n, fs=[];
+  for(let i=2;i*i<=t;i++) while(t%i===0){fs.push(i);t/=i;}
+  if(t>1) fs.push(t);
+  out(n+' = '+fs.join(' × '));
+};
+window.runGenrand = function(){
+  const a=Math.round(g('r_a')), b=Math.round(g('r_b')), c=Math.round(g('r_c'));
+  const res=[];
+  for(let i=0;i<c;i++) res.push(Math.floor(Math.random()*(b-a+1))+a);
+  out(res.join(', '));
+};
+
+/* ============ ГЕОМЕТРИЯ ============ */
+window.runTri = function(){
+  const a=g('t_a'),b=g('t_b'),c=g('t_c');
+  if(a+b<=c||a+c<=b||b+c<=a){out('Ошибка','Такого треугольника не существует');return;}
+  const p=(a+b+c)/2, S=Math.sqrt(p*(p-a)*(p-b)*(p-c));
+  out('Площадь = '+S.toFixed(4), 'Полупериметр p = '+p);
+};
+window.runCircle = function(){
+  const r=g('c_r');
+  out('S = '+(Math.PI*r*r).toFixed(4)+'<br>C = '+(2*Math.PI*r).toFixed(4));
+};
+window.runCone = function(){
+  const r=g('co_r'),h=g('co_h'), l=Math.sqrt(r*r+h*h);
+  out('V = '+(Math.PI*r*r*h/3).toFixed(4)+'<br>S боковой = '+(Math.PI*r*l).toFixed(4));
+};
+window.runRect = function(){
+  const a=g('rc_a'),b=g('rc_b');
+  out('P = '+(2*(a+b)).toFixed(2)+'<br>S = '+(a*b).toFixed(2)+'<br>d = '+Math.sqrt(a*a+b*b).toFixed(4));
+};
+window.runSphere = function(){
+  const r=g('sp_r');
+  out('V = '+(4/3*Math.PI*r*r*r).toFixed(4)+'<br>S = '+(4*Math.PI*r*r).toFixed(4));
+};
+window.runCyl = function(){
+  const r=g('cy_r'),h=g('cy_h');
+  out('V = '+(Math.PI*r*r*h).toFixed(4)+'<br>S полной = '+(2*Math.PI*r*(r+h)).toFixed(4));
+};
+window.runVector = function(){
+  const x1=g('vx1'),y1=g('vy1'),x2=g('vx2'),y2=g('vy2');
+  const op=document.getElementById('vop').value;
+  if(op==='add') out('('+(x1+x2).toFixed(2)+'; '+(y1+y2).toFixed(2)+')');
+  else if(op==='len') out('|v₁| = '+Math.hypot(x1,y1).toFixed(4)+'<br>|v₂| = '+Math.hypot(x2,y2).toFixed(4));
+  else out('Скалярное = '+(x1*x2+y1*y2).toFixed(4));
+};
+window.runDist = function(){
+  const dx=g('dx2')-g('dx1'), dy=g('dy2')-g('dy1');
+  out('d = '+Math.hypot(dx,dy).toFixed(4));
+};
+window.runAngle = function(){
+  const v=g('av'), m=document.getElementById('au').value;
+  if(m==='d') out((v*Math.PI/180).toFixed(6)+' рад');
+  else out((v*180/Math.PI).toFixed(4)+'°');
+};
+window.runPyth = function(){
+  const m=document.getElementById('pyw').value, a=g('py_a'), b=g('py_b');
+  if(m==='c') out('c = '+Math.sqrt(a*a+b*b).toFixed(4));
+  else out('a = '+Math.sqrt(Math.max(0,b*b-a*a)).toFixed(4));
+};
+window.runPoly = function(){
+  const n=g('pn'), a=g('pa');
+  out('S = '+(n*a*a/(4*Math.tan(Math.PI/n))).toFixed(4));
+};
+window.runTrap = function(){ out('S = '+((g('tp_a')+g('tp_b'))*g('tp_h')/2).toFixed(4)); };
+window.runSector = function(){
+  const r=g('sec_r'), a=g('sec_a'), rad=a*Math.PI/180;
+  out('S = '+(0.5*r*r*rad).toFixed(4)+'<br>L дуги = '+(r*rad).toFixed(4));
+};
+window.runEllipse = function(){ out('S = '+(Math.PI*g('el_a')*g('el_b')).toFixed(4)); };
+window.runCube = function(){
+  const a=g('cu_a');
+  out('V = '+(a*a*a).toFixed(2)+'<br>S = '+(6*a*a).toFixed(2)+'<br>d = '+(a*Math.sqrt(3)).toFixed(4));
+};
+
+/* ============ ВЕРОЯТНОСТЬ ============ */
+window.runProb = function(){
+  const m=g('pr_m'),n=g('pr_n');
+  if(!n){out('Ошибка','n = 0');return;}
+  out('P(A) = '+(m/n).toFixed(6), m+' / '+n);
+};
+window.runComb = function(){
+  const f=document.getElementById('cbf').value;
+  const n=Math.round(g('cb_n')), k=Math.round(g('cb_k'));
+  let r;
+  if(f==='c') r=Cnk(n,k);
+  else if(f==='a') r=Ank(n,k);
+  else r=fact(n);
+  out(r.toFixed(0));
+};
+window.runDice = function(){
+  const n=Math.max(1,Math.min(10,Math.round(g('di_n'))));
+  const res=[];
+  for(let i=0;i<n;i++) res.push(Math.floor(Math.random()*6)+1);
+  out(res.join(' • '), 'Сумма: '+res.reduce((a,b)=>a+b,0));
+};
+window.runCoin = function(){
+  out(['🪙 Орёл','🪙 Решка'][Math.floor(Math.random()*2)]);
+};
+window.runWheel = function(){
+  const arr=gv('wh_v').split(',').map(s=>s.trim()).filter(s=>s);
+  if(!arr.length){out('Введи варианты');return;}
+  out('🎯 '+arr[Math.floor(Math.random()*arr.length)]);
+};
+window.runBinom = function(){
+  const n=Math.round(g('bn_n')),k=Math.round(g('bn_k')),p=g('bn_p');
+  const r=Cnk(n,k)*Math.pow(p,k)*Math.pow(1-p,n-k);
+  out('P(X = '+k+') = '+r.toFixed(6));
+};
+window.runNormal = function(){
+  const mu=g('nm_m'), s=g('nm_s'), x=g('nm_x');
+  const f=(1/(s*Math.sqrt(2*Math.PI)))*Math.exp(-0.5*Math.pow((x-mu)/s,2));
+  out('f(x) = '+f.toFixed(6));
+  const c=document.getElementById('nm_can'); if(!c)return;
+  const ctx=c.getContext('2d'), w=c.width, h=c.height;
+  ctx.clearRect(0,0,w,h);
+  ctx.strokeStyle='#e6e9f2'; ctx.beginPath(); ctx.moveTo(0,h-20); ctx.lineTo(w,h-20); ctx.stroke();
+  const maxY=1/(s*Math.sqrt(2*Math.PI));
+  ctx.strokeStyle='#5b5bff'; ctx.lineWidth=2.5; ctx.beginPath();
+  for(let px=0;px<w;px++){
+    const xv=mu-4*s+(8*s*px/w);
+    const yv=(1/(s*Math.sqrt(2*Math.PI)))*Math.exp(-0.5*Math.pow((xv-mu)/s,2));
+    const py=h-20-yv*(h-40)/maxY;
+    if(px===0)ctx.moveTo(px,py);else ctx.lineTo(px,py);
+  }
+  ctx.stroke();
+};
+window.runStat = function(){
+  const arr=gv('st_v').split(',').map(Number).filter(n=>!isNaN(n));
+  if(!arr.length){out('Ошибка','Введи числа через запятую');return;}
+  const mean=arr.reduce((a,b)=>a+b,0)/arr.length;
+  const sorted=[...arr].sort((a,b)=>a-b);
+  const mid=Math.floor(sorted.length/2);
+  const median=sorted.length%2?sorted[mid]:(sorted[mid-1]+sorted[mid])/2;
+  const variance=arr.reduce((s,x)=>s+(x-mean)*(x-mean),0)/arr.length;
+  out('Среднее: '+mean.toFixed(4)+'<br>Медиана: '+median+'<br>Дисперсия: '+variance.toFixed(4)+'<br>Мин: '+Math.min(...arr)+' &nbsp; Макс: '+Math.max(...arr));
+};
+window.runTree = function(){
+  const pa=g('tr_pa'), pba=g('tr_pba'), pnba=g('tr_pnba');
+  const c=document.getElementById('tr_can'); if(!c)return;
+  const ctx=c.getContext('2d'), w=c.width, h=c.height;
+  ctx.clearRect(0,0,w,h);
+  ctx.font='13px system-ui'; ctx.fillStyle='#131a2e';
+  ctx.fillText('A: '+pa, 20, 40);
+  ctx.fillText('¬A: '+(1-pa).toFixed(3), 20, 90);
+  ctx.fillText('B|A: '+pba, 150, 30);
+  ctx.fillText('¬B|A: '+(1-pba).toFixed(3), 150, 55);
+  ctx.fillText('B|¬A: '+pnba, 150, 80);
+  ctx.fillText('¬B|¬A: '+(1-pnba).toFixed(3), 150, 105);
+  ctx.strokeStyle='#5b5bff'; ctx.lineWidth=1.5;
+  ctx.beginPath();
+  ctx.moveTo(90,40); ctx.lineTo(140,30);
+  ctx.moveTo(90,40); ctx.lineTo(140,50);
+  ctx.moveTo(90,90); ctx.lineTo(140,80);
+  ctx.moveTo(90,90); ctx.lineTo(140,100);
+  ctx.stroke();
+  const pb=pa*pba+(1-pa)*pnba;
+  ctx.fillStyle='#5b5bff'; ctx.font='bold 14px system-ui';
+  ctx.fillText('P(B) = '+pb.toFixed(4), 300, 70);
+  ctx.fillStyle='#131a2e'; ctx.font='13px system-ui';
+  ctx.fillText('P(¬B) = '+(1-pb).toFixed(4), 300, 95);
+};
+window.runExp = function(){
+  const xs=gv('ex_x').split(',').map(Number), ps=gv('ex_p').split(',').map(Number);
+  if(xs.length!==ps.length){out('Ошибка','Разные длины массивов');return;}
+  const sumP=ps.reduce((a,b)=>a+b,0);
+  if(Math.abs(sumP-1)>0.01){out('Ошибка','Сумма вероятностей должна быть = 1 (сейчас '+sumP.toFixed(3)+')');return;}
+  const ex=xs.reduce((s,x,i)=>s+x*ps[i],0);
+  const ex2=xs.reduce((s,x,i)=>s+x*x*ps[i],0);
+  const dx=ex2-ex*ex;
+  out('E[X] = '+ex.toFixed(4)+'<br>D[X] = '+dx.toFixed(4)+'<br>σ = '+Math.sqrt(dx).toFixed(4));
+};
+window.runFreq = function(){
+  const m=g('fr_m'), n=g('fr_n');
+  if(!n){out('Ошибка','n = 0');return;}
+  out('Относительная частота = '+(m/n).toFixed(6));
+};
+window.runRand = function(){
+  const a=Math.round(g('rnd_a')), b=Math.round(g('rnd_b')), c=Math.round(g('rnd_c'));
+  const res=[];
+  for(let i=0;i<c;i++) res.push(Math.floor(Math.random()*(b-a+1))+a);
+  out(res.join(', '));
+};
+window.runWalk = function(){
+  const n=Math.max(10,Math.min(2000,Math.round(g('wk_n'))));
+  const c=document.getElementById('wk_can'); if(!c)return;
+  const ctx=c.getContext('2d'), w=c.width, h=c.height;
+  ctx.clearRect(0,0,w,h);
+  let x=w/2, y=h/2;
+  ctx.strokeStyle='#5b5bff'; ctx.lineWidth=1.5; ctx.beginPath();
+  ctx.moveTo(x,y);
+  for(let i=0;i<n;i++){
+    const dir=Math.floor(Math.random()*4);
+    if(dir===0)x+=3; else if(dir===1)x-=3; else if(dir===2)y+=3; else y-=3;
+    ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+  ctx.fillStyle='#5b5bff';
+  ctx.beginPath(); ctx.arc(x,y,4,0,Math.PI*2); ctx.fill();
+};
+window.runBayes = function(){
+  const pa=g('by_pa'), pba=g('by_pba'), pnba=g('by_pnba');
+  const pb=pa*pba+(1-pa)*pnba;
+  if(!pb){out('Ошибка','P(B) = 0');return;}
+  out('P(A|B) = '+((pa*pba)/pb).toFixed(6));
+};
+window.runUniform = function(){
+  const a=g('un_a'), b=g('un_b'), x=g('un_x');
+  const f=(x>=a&&x<=b)?1/(b-a):0;
+  out('f(x) = '+f.toFixed(6), 'Равномерное на ['+a+'; '+b+']');
+};
+
+/* ============ ФИЗИКА ============ */
+window.runOhm = function(){
+  const u=g('oh_u'), i=g('oh_i'), r=g('oh_r'), p=g('oh_p');
+  let txt='';
+  if(u&&i) txt='R = '+(u/i).toFixed(3)+' Ом<br>P = '+(u*i).toFixed(3)+' Вт';
+  else if(u&&r) txt='I = '+(u/r).toFixed(3)+' А<br>P = '+(u*u/r).toFixed(3)+' Вт';
+  else if(i&&r) txt='U = '+(i*r).toFixed(3)+' В<br>P = '+(i*i*r).toFixed(3)+' Вт';
+  else if(p&&u) txt='I = '+(p/u).toFixed(3)+' А<br>R = '+(u*u/p).toFixed(3)+' Ом';
+  else if(p&&i) txt='U = '+(p/i).toFixed(3)+' В<br>R = '+(p/(i*i)).toFixed(3)+' Ом';
+  else if(p&&r) txt='U = '+Math.sqrt(p*r).toFixed(3)+' В<br>I = '+Math.sqrt(p/r).toFixed(3)+' А';
+  else txt='Заполни ровно 2 поля из 4';
+  out(txt);
+};
+window.runConvert = function(){
+  const f=document.getElementById('cv_f').value, t=document.getElementById('cv_t').value, v=g('cv_v');
+  let r;
+  if(f===t) r=v;
+  else if(f==='m'&&t==='km') r=v/1000;
+  else if(f==='km'&&t==='m') r=v*1000;
+  else if(f==='kg'&&t==='g') r=v*1000;
+  else if(f==='g'&&t==='kg') r=v/1000;
+  else if(f==='c'&&t==='f') r=v*9/5+32;
+  else if(f==='f'&&t==='c') r=(v-32)*5/9;
+  else r='Конвертация не поддерживается';
+  out(typeof r==='number'?r.toFixed(4):r);
+};
+window.runEnergy = function(){
+  const w=document.getElementById('en_w').value;
+  const m=g('en_m'), v=g('en_v'), gg=g('en_g');
+  if(w==='ke') out('E = '+(0.5*m*v*v).toFixed(3)+' Дж');
+  else out('E = '+(m*gg*v).toFixed(3)+' Дж');
+};
+window.runKinem = function(){
+  const w=document.getElementById('kn_w').value;
+  const v0=g('kn_v0'), a=g('kn_a'), t=g('kn_t');
+  if(w==='s') out('s = '+(v0*t+0.5*a*t*t).toFixed(3)+' м');
+  else if(w==='v') out('v = '+(v0+a*t).toFixed(3)+' м/с');
+  else out('t = '+((t-v0)/a).toFixed(3)+' с');
+};
+window.runPend = function(){
+  out('T = '+(2*Math.PI*Math.sqrt(g('pen_l')/g('pen_g'))).toFixed(4)+' с');
+};
+window.runGravity = function(){
+  const G=6.674e-11;
+  out('F = '+(G*g('gr_m1')*g('gr_m2')/(g('gr_r')**2)).toExponential(3)+' Н');
+};
+window.runPressure = function(){ out('P = '+(g('pr_rho')*g('pr_g')*g('pr_h')).toFixed(3)+' Па'); };
+window.runDensity = function(){ out('ρ = '+(g('den_m')/g('den_v')).toFixed(4)+' кг/м³'); };
+window.runWork = function(){
+  const F=g('wr_f'), s=g('wr_s'), t=g('wr_t');
+  out('A = '+(F*s).toFixed(3)+' Дж<br>N = '+(t?(F*s/t).toFixed(3):'—')+' Вт');
+};
+window.runWave = function(){
+  const v=g('wv_v'), f=g('wv_f'), l=g('wv_l');
+  if(v&&f) out('λ = '+(v/f).toFixed(4)+' м');
+  else if(v&&l) out('f = '+(v/l).toFixed(4)+' Гц');
+  else if(f&&l) out('v = '+(f*l).toFixed(4)+' м/с');
+  else out('Введи 2 значения из 3');
+};
+window.runMirror = function(){ out('F = '+(g('mi_r')/2).toFixed(4)+' м'); };
+window.runResist = function(){ out('R = '+(g('rs_rho')*g('rs_l')/g('rs_s')).toFixed(4)+' Ом'); };
+window.runCapac = function(){ out('C = '+(g('cap_q')/g('cap_u')).toFixed(6)+' Ф'); };
+window.runLens = function(){
+  const d=g('le_d'), f=g('le_f');
+  if(!d||!f){out('Заполни оба поля');return;}
+  out('F = '+(1/(1/d+1/f)).toFixed(4)+' м');
+};
+window.runHeat = function(){ out('Q = '+(g('ht_m')*g('ht_c')*g('ht_dt')).toFixed(3)+' Дж'); };
+
+/* ============ ИНФОРМАТИКА ============ */
+window.runNS = function(){
+  const num=gv('ns_num'), from=parseInt(document.getElementById('ns_from').value), to=parseInt(document.getElementById('ns_to').value);
+  let dec=parseInt(num,from);
+  if(isNaN(dec)){out('Ошибка','Неверное число');return;}
+  let r=dec.toString(to).toUpperCase();
+  out(num+' ('+from+') = '+r+' ('+to+')');
+};
+window.runInfo = function(){
+  const v=g('ib_v'), u=document.getElementById('ib_u').value;
+  let bits;
+  switch(u){
+    case 'b':bits=v;break;
+    case 'B':bits=v*8;break;
+    case 'KB':bits=v*8*1024;break;
+    case 'MB':bits=v*8*1024*1024;break;
+    case 'GB':bits=v*8*1024*1024*1024;break;
+  }
+  out('бит: '+bits+'<br>байт: '+(bits/8)+'<br>КБ: '+(bits/8/1024).toFixed(4)+'<br>МБ: '+(bits/8/1024/1024).toFixed(6)+'<br>ГБ: '+(bits/8/1024/1024/1024).toFixed(9));
+};
+window.runLogic = function(){
+  const op=document.getElementById('lo_op').value;
+  const a=g('lo_a'), b=g('lo_b');
+  let r;
+  switch(op){
+    case 'and':r=a&&b;break;
+    case 'or':r=a||b;break;
+    case 'not':r=!a;break;
+    case 'xor':r=!!(a^b);break;
+  }
+  out(r?'1 (истина)':'0 (ложь)');
+};
+window.runTT = function(){
+  const e=document.getElementById('tt_e').value;
+  let html='<table class="truth"><tr><th>A</th><th>B</th><th>Результат</th></tr>';
+  [[0,0],[0,1],[1,0],[1,1]].forEach(([a,b])=>{
+    let r;
+    switch(e){
+      case 'and':r=a&&b;break;
+      case 'or':r=a||b;break;
+      case 'impl':r=!a||b;break;
+      case 'eq':r=a===b;break;
+    }
+    html+='<tr><td>'+a+'</td><td>'+b+'</td><td><b>'+(r?1:0)+'</b></td></tr>';
   });
-
-  /* Кнопка "наверх" */
-  const toTop = document.getElementById('toTop');
-  window.addEventListener('scroll', () => {
-    toTop.classList.toggle('show', window.scrollY > 500);
-  });
-  toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  html+='</table>';
+  setOut(html);
+};
+window.runEncoding = function(){
+  const t=gv('ct_t');
+  const codes=t.split('').map(c=>c.charCodeAt(0)).join(' ');
+  out(codes, 'По одному коду на символ (пробел — разделитель)');
+};
+window.runBinAdd = function(){
+  const a=gv('bs_a'), b=gv('bs_b');
+  try{
+    const s=parseInt(a,2)+parseInt(b,2);
+    out(s.toString(2), 'Десятичное: '+s);
+  }catch(e){out('Ошибка','Неверное двоичное число');}
+};
+window.runCaesar = function(){
+  const t=gv('cz_t'), sh=Math.round(g('cz_s')), d=document.getElementById('cz_d').value;
+  const shift = d==='enc'?sh:-sh;
+  const r=t.split('').map(c=>{
+    const code=c.charCodeAt(0);
+    if(code>=65&&code<=90) return String.fromCharCode((code-65+shift+26)%26+65);
+    if(code>=97&&code<=122) return String.fromCharCode((code-97+shift+26)%26+97);
+    if(code>=1040&&code<=1071) return String.fromCharCode((code-1040+shift+32)%32+1040);
+    if(code>=1072&&code<=1103) return String.fromCharCode((code-1072+shift+32)%32+1072);
+    return c;
+  }).join('');
+  out(r);
+};
+window.runComplexity = function(){
+  const n=g('tc_n');
+  out('O(1) → 1 операция<br>O(log n) → '+Math.floor(Math.log2(n))+'<br>O(n) → '+n+'<br>O(n²) → '+(n*n)+'<br>O(2ⁿ) → очень много');
+};
+window.runNetworks = function(){
+  const ip=gv('ip_a').split('.').map(Number);
+  const mask=gv('ip_m').split('.').map(Number);
+  if(ip.length!==4||mask.length!==4||ip.some(isNaN)||mask.some(isNaN)){out('Ошибка','Неверный формат');return;}
+  const net=ip.map((o,i)=>o&mask[i]).join('.');
+  out('Адрес сети: '+net);
+};
 </script>
-
 </body>
 </html>
