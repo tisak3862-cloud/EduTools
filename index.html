@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>УчисьЛегко — инструменты для учёбы</title>
+<style>
+  :root{
+    --bg:#f5f7fc;
+    --card:#ffffff;
+    --text:#131a2e;
+    --muted:#5d6780;
+    --accent:#5b5bff;
+    --accent2:#8b5cf6;
+    --border:#e6e9f2;
+    --radius:18px;
+    --shadow:0 4px 20px rgba(20,30,70,.06);
+    --shadow-hover:0 12px 30px rgba(60,70,180,.16);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    font-family:'Segoe UI',Roboto,-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:90px 20px 70px;
+    text-align:center;
+    background:
+      radial-gradient(900px 400px at 20% 0%, rgba(139,92,246,.18), transparent 60%),
+      radial-gradient(900px 400px at 80% 10%, rgba(91,91,255,.18), transparent 60%),
+      #ffffff;
+    border-bottom:1px solid var(--border);
+    overflow:hidden;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:auto 0 -1px 0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent);
+    opacity:.4;
+  }
+
+  .logo{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.4px;
+    color:var(--accent);
+    background:rgba(91,91,255,.08);
+    border:1px solid rgba(91,91,255,.2);
+    padding:7px 16px;
+    border-radius:100px;
+    margin-bottom:28px;
+  }
+
+  h1{
+    font-size:clamp(34px,6vw,64px);
+    line-height:1.1;
+    letter-spacing:-1.5px;
+    font-weight:800;
+    background:linear-gradient(120deg,#131a2e 20%,var(--accent) 60%,var(--accent2) 90%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    margin-bottom:18px;
+  }
+
+  .tagline{
+    font-size:clamp(17px,2.4vw,23px);
+    color:var(--muted);
+    max-width:620px;
+    margin:0 auto 40px;
+  }
+
+  .nav-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+    max-width:900px;
+    margin:0 auto;
+  }
+
+  .nav-buttons a{
+    text-decoration:none;
+    color:var(--text);
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:12px 22px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:15px;
+    box-shadow:var(--shadow);
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, color .18s ease;
+  }
+
+  .nav-buttons a:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow-hover);
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{
+    max-width:1180px;
+    margin:0 auto;
+    padding:70px 20px 20px;
+    scroll-margin-top:20px;
+  }
+
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:8px;
+  }
+
+  .section-icon{
+    width:46px;height:46px;
+    flex:0 0 46px;
+    display:grid;place-items:center;
+    font-size:22px;
+    border-radius:14px;
+    background:linear-gradient(135deg,rgba(91,91,255,.14),rgba(139,92,246,.14));
+    border:1px solid rgba(91,91,255,.18);
+  }
+
+  h2{
+    font-size:clamp(24px,3.4vw,34px);
+    letter-spacing:-.7px;
+    font-weight:800;
+  }
+
+  .section-sub{
+    color:var(--muted);
+    margin-bottom:30px;
+    font-size:15px;
+  }
+
+  .divider{
+    height:1px;
+    background:linear-gradient(90deg,var(--border),transparent);
+    margin-bottom:30px;
+  }
+
+  /* ---------- CARDS ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(255px,1fr));
+    gap:16px;
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    box-shadow:var(--shadow);
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    opacity:0;
+    transform:translateY(18px);
+    cursor:pointer;
+  }
+
+  .card.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .card:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow-hover);
+    border-color:rgba(91,91,255,.45);
+  }
+
+  .card .emoji{
+    font-size:22px;
+    line-height:1;
+    width:42px;height:42px;
+    flex:0 0 42px;
+    display:grid;place-items:center;
+    border-radius:12px;
+    background:linear-gradient(135deg,#f2f4ff,#f7f0ff);
+    border:1px solid var(--border);
+  }
+
+  .card .name{
+    font-weight:600;
+    font-size:15px;
+    line-height:1.35;
+  }
+
+  .card .hint{
+    font-size:12.5px;
+    color:var(--muted);
+    margin-top:3px;
+  }
+
+  /* ---------- SUPPORT ---------- */
+  .support{
+    max-width:1180px;
+    margin:80px auto 0;
+    padding:0 20px;
+  }
+
+  .support-box{
+    position:relative;
+    text-align:center;
+    border-radius:26px;
+    padding:56px 26px;
+    background:
+      radial-gradient(600px 240px at 50% 0%, rgba(139,92,246,.22), transparent 70%),
+      linear-gradient(135deg,#ffffff,#f7f8ff);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+
+  .support-box h3{
+    font-size:clamp(22px,3vw,30px);
+    letter-spacing:-.6px;
+    margin-bottom:12px;
+  }
+
+  .support-box p{
+    color:var(--muted);
+    max-width:560px;
+    margin:0 auto 28px;
+  }
+
+  .btn-boosty{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:16px;
+    color:#fff;
+    padding:15px 34px;
+    border-radius:100px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    box-shadow:0 10px 26px rgba(91,91,255,.35);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+
+  .btn-boosty:hover{
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 16px 34px rgba(91,91,255,.45);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    margin-top:80px;
+    padding:56px 20px 60px;
+    background:#0f1425;
+    color:#c3cade;
+  }
+
+  .footer-inner{
+    max-width:900px;
+    margin:0 auto;
+    text-align:center;
+  }
+
+  footer h3{
+    color:#fff;
+    font-size:clamp(20px,2.8vw,26px);
+    margin-bottom:16px;
+    letter-spacing:-.5px;
+  }
+
+  footer p{
+    font-size:15px;
+    color:#98a2bd;
+    margin-bottom:14px;
+  }
+
+  footer .copy{
+    margin-top:32px;
+    padding-top:22px;
+    border-top:1px solid rgba(255,255,255,.09);
+    font-size:13px;
+    color:#6c7695;
+  }
+
+  /* ---------- TO TOP ---------- */
+  #toTop{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:48px;height:48px;
+    border-radius:50%;
+    border:none;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 10px 24px rgba(91,91,255,.4);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+    z-index:99;
+  }
+
+  #toTop.show{opacity:1;pointer-events:auto}
+  #toTop:hover{transform:translateY(-4px)}
+
+  @media (max-width:520px){
+    .hero{padding:60px 16px 50px}
+    .nav-buttons a{padding:10px 16px;font-size:14px}
+    .grid{grid-template-columns:1fr}
+    section{padding:50px 16px 10px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="logo">📚 УчисьЛегко</div>
+  <h1>УчисьЛегко</h1>
+  <p class="tagline">Этот сайт сделает вашу учёбу легче</p>
+
+  <nav class="nav-buttons">
+    <a href="#algebra">📐 Алгебра и дроби</a>
+    <a href="#geometry">📐 Геометрия</a>
+    <a href="#probability">🎲 Теория вероятностей</a>
+    <a href="#physics">🧲 Физика</a>
+    <a href="#informatics">💻 Информатика</a>
+  </nav>
+</header>
+
+<!-- ================= АЛГЕБРА ================= -->
+<section id="algebra">
+  <div class="section-head">
+    <div class="section-icon">📐</div>
+    <h2>Алгебра и дроби</h2>
+  </div>
+  <p class="section-sub">15 инструментов для вычислений, преобразований и графиков</p>
+  <div class="divider"></div>
+  <div class="grid">
+    <div class="card"><div class="emoji">🟰</div><div><div class="name">Калькулятор уравнений</div><div class="hint">Линейные, квадратные, любые</div></div></div>
+    <div class="card"><div class="emoji">➗</div><div><div class="name">Калькулятор дробей</div><div class="hint">Сокращение и действия</div></div></div>
+    <div class="card"><div class="emoji">🔢</div><div><div class="name">Калькулятор матриц и определителей</div><div class="hint">Умножение, ранг, det</div></div></div>
+    <div class="card"><div class="emoji">📈</div><div><div class="name">Графический калькулятор функций</div><div class="hint">Построение графиков</div></div></div>
+    <div class="card"><div class="emoji">🧩</div><div><div class="name">Калькулятор систем линейных уравнений</div><div class="hint">Метод Гаусса и Крамера</div></div></div>
+    <div class="card"><div class="emoji">📉</div><div><div class="name">Калькулятор интегралов и производных</div><div class="hint">Пошаговое решение</div></div></div>
+    <div class="card"><div class="emoji">🧮</div><div><div class="name">Калькулятор дискриминанта и квадратных уравнений</div><div class="hint">Корни и теорема Виета</div></div></div>
+    <div class="card"><div class="emoji">📷</div><div><div class="name">Распознаватель математического текста</div><div class="hint">Фото-сканер примеров</div></div></div>
+    <div class="card"><div class="emoji">📝</div><div><div class="name">Интерактивный математический блокнот</div><div class="hint">Записи и расчёты</div></div></div>
+    <div class="card"><div class="emoji">🌀</div><div><div class="name">Калькулятор комплексных чисел</div><div class="hint">Все действия и модуль</div></div></div>
+    <div class="card"><div class="emoji">🪄</div><div><div class="name">Упроститель алгебраических выражений</div><div class="hint">Приведение подобных</div></div></div>
+    <div class="card"><div class="emoji">♾️</div><div><div class="name">Калькулятор пределов (лимитов)</div><div class="hint">Пределы функций</div></div></div>
+    <div class="card"><div class="emoji">📐</div><div><div class="name">Калькулятор тригонометрических функций</div><div class="hint">sin, cos, tg, ctg</div></div></div>
+    <div class="card"><div class="emoji">🧱</div><div><div class="name">Разложитель многочленов на множители</div><div class="hint">Формулы сокращённого умножения</div></div></div>
+    <div class="card"><div class="emoji">🎲</div><div><div class="name">Математический генератор случайных примеров</div><div class="hint">Тренировка навыков</div></div></div>
+  </div>
+</section>
+
+<!-- ================= ГЕОМЕТРИЯ ================= -->
+<section id="geometry">
+  <div class="section-head">
+    <div class="section-icon">📏</div>
+    <h2>Геометрия и стереометрия</h2>
+  </div>
+  <p class="section-sub">15 инструментов для фигур, чертежей и 3D-тел</p>
+  <div class="divider"></div>
+  <div class="grid">
+    <div class="card"><div class="emoji">🔺</div><div><div class="name">Калькулятор треугольников</div><div class="hint">По трём сторонам или углам</div></div></div>
+    <div class="card"><div class="emoji">✏️</div><div><div class="name">Интерактивный геометрический чертёжник</div><div class="hint">Рисование фигур</div></div></div>
+    <div class="card"><div class="emoji">🍦</div><div><div class="name">Калькулятор объёма и площади конуса</div><div class="hint">Конус и усечённый конус</div></div></div>
+    <div class="card"><div class="emoji">⬜</div><div><div class="name">Калькулятор площади и периметра плоских фигур</div><div class="hint">Все формулы планиметрии</div></div></div>
+    <div class="card"><div class="emoji">🧊</div><div><div class="name">Калькулятор площади поверхности 3D-тел</div><div class="hint">Куб, шар, цилиндр</div></div></div>
+    <div class="card"><div class="emoji">🏗️</div><div><div class="name">Стереометрический 3D-конструктор</div><div class="hint">Сборка тел вращения</div></div></div>
+    <div class="card"><div class="emoji">➡️</div><div><div class="name">Калькулятор векторов и координат</div><div class="hint">Скалярное и векторное произведение</div></div></div>
+    <div class="card"><div class="emoji">🔪</div><div><div class="name">Построитель сечений многогранников</div><div class="hint">Сечения плоскостью</div></div></div>
+    <div class="card"><div class="emoji">📐</div><div><div class="name">Цифровой транспортир и измеритель углов</div><div class="hint">Углы онлайн</div></div></div>
+    <div class="card"><div class="emoji">🧩</div><div><div class="name">Головоломка геометрических построений</div><div class="hint">Постройка циркулем и линейкой</div></div></div>
+    <div class="card"><div class="emoji">📏</div><div><div class="name">Калькулятор теоремы Пифагора</div><div class="hint">Катеты и гипотенуза</div></div></div>
+    <div class="card"><div class="emoji">⭕</div><div><div class="name">Интерактивная тригонометрическая окружность</div><div class="hint">Значения sin и cos</div></div></div>
+    <div class="card"><div class="emoji">🎯</div><div><div class="name">Калькулятор вписанных и описанных окружностей</div><div class="hint">Радиусы и центры</div></div></div>
+    <div class="card"><div class="emoji">🔍</div><div><div class="name">Анализатор геометрических теорем</div><div class="hint">Проверка условий</div></div></div>
+    <div class="card"><div class="emoji">🔄</div><div><div class="name">Трансформатор геометрических фигур</div><div class="hint">Отражение и поворот</div></div></div>
+  </div>
+</section>
+
+<!-- ================= ВЕРОЯТНОСТЬ ================= -->
+<section id="probability">
+  <div class="section-head">
+    <div class="section-icon">🎲</div>
+    <h2>Теория вероятностей и комбинаторика</h2>
+  </div>
+  <p class="section-sub">15 инструментов для случайностей, распределений и статистики</p>
+  <div class="divider"></div>
+  <div class="grid">
+    <div class="card"><div class="emoji">🎯</div><div><div class="name">Калькулятор вероятностей событий</div><div class="hint">Сложение и умножение</div></div></div>
+    <div class="card"><div class="emoji">🧮</div><div><div class="name">Калькулятор сочетаний и перестановок</div><div class="hint">Комбинаторика</div></div></div>
+    <div class="card"><div class="emoji">🎰</div><div><div class="name">Виртуальный генератор случайных событий</div><div class="hint">Свои вероятности</div></div></div>
+    <div class="card"><div class="emoji">🎲</div><div><div class="name">Симулятор бросания игральных костей</div><div class="hint">1–6 кубиков</div></div></div>
+    <div class="card"><div class="emoji">🪙</div><div><div class="name">Симулятор подбрасывания монетки</div><div class="hint">Серии бросков</div></div></div>
+    <div class="card"><div class="emoji">🎡</div><div><div class="name">Виртуальное колесо фортуны</div><div class="hint">Рандомайзер</div></div></div>
+    <div class="card"><div class="emoji">📊</div><div><div class="name">Построитель графиков распределения вероятностей</div><div class="hint">Визуализация</div></div></div>
+    <div class="card"><div class="emoji">🧮</div><div><div class="name">Калькулятор биномиального распределения</div><div class="hint">Формула Бернулли</div></div></div>
+    <div class="card"><div class="emoji">🔔</div><div><div class="name">Визуализатор нормального распределения</div><div class="hint">Доска Гаусса</div></div></div>
+    <div class="card"><div class="emoji">📋</div><div><div class="name">Калькулятор статистической выборки</div><div class="hint">Среднее, медиана, мода</div></div></div>
+    <div class="card"><div class="emoji">🌳</div><div><div class="name">Построитель деревьев вероятностей</div><div class="hint">Пошаговые исходы</div></div></div>
+    <div class="card"><div class="emoji">📉</div><div><div class="name">Калькулятор математического ожидания и дисперсии</div><div class="hint">M(X) и D(X)</div></div></div>
+    <div class="card"><div class="emoji">⭕</div><div><div class="name">Интерактивный анализатор кругов Эйлера</div><div class="hint">Множества</div></div></div>
+    <div class="card"><div class="emoji">🚶</div><div><div class="name">Симулятор случайных блужданий</div><div class="hint">Броуновское движение</div></div></div>
+    <div class="card"><div class="emoji">📶</div><div><div class="name">Калькулятор частоты и относительной вероятности</div><div class="hint">Статистическая вероятность</div></div></div>
+  </div>
+</section>
+
+<!-- ================= ФИЗИКА ================= -->
+<section id="physics">
+  <div class="section-head">
+    <div class="section-icon">🧲</div>
+    <h2>Физика и симуляторы</h2>
+  </div>
+  <p class="section-sub">15 инструментов для расчётов и виртуальных экспериментов</p>
+  <div class="divider"></div>
+  <div class="grid">
+    <div class="card"><div class="emoji">🧲</div><div><div class="name">Калькулятор физических формул (по темам)</div><div class="hint">Механика, электричество, оптика</div></div></div>
+    <div class="card"><div class="emoji">🔄</div><div><div class="name">Умный конвертер физических величин</div><div class="hint">СИ и внесистемные единицы</div></div></div>
+    <div class="card"><div class="emoji">⚡</div><div><div class="name">Виртуальный конструктор электрических схем</div><div class="hint">Сборка и расчёт цепей</div></div></div>
+    <div class="card"><div class="emoji">🏖️</div><div><div class="name">2D-физическая песочница</div><div class="hint">Симулятор твёрдых тел</div></div></div>
+    <div class="card"><div class="emoji">💥</div><div><div class="name">Баллистический симулятор</div><div class="hint">Траектории снарядов</div></div></div>
+    <div class="card"><div class="emoji">🔦</div><div><div class="name">Оптический конструктор линз и лазеров</div><div class="hint">Ход лучей</div></div></div>
+    <div class="card"><div class="emoji">🌡️</div><div><div class="name">Виртуальная лаборатория термодинамики</div><div class="hint">Газовые законы</div></div></div>
+    <div class="card"><div class="emoji">⏱️</div><div><div class="name">Симулятор механических маятников и пружин</div><div class="hint">Колебания</div></div></div>
+    <div class="card"><div class="emoji">📚</div><div><div class="name">Интерактивный справочник физических констант</div><div class="hint">Все основные постоянные</div></div></div>
+    <div class="card"><div class="emoji">🔌</div><div><div class="name">Калькулятор закона Ома и цепей постоянного тока</div><div class="hint">U, I, R, P</div></div></div>
+    <div class="card"><div class="emoji">⚙️</div><div><div class="name">Калькулятор кинетической и потенциальной энергии</div><div class="hint">Энергия и работа</div></div></div>
+    <div class="card"><div class="emoji">🪐</div><div><div class="name">Симулятор гравитационного взаимодействия тел</div><div class="hint">Орбиты и притяжение</div></div></div>
+    <div class="card"><div class="emoji">〰️</div><div><div class="name">Аниматор волновых процессов и интерференции</div><div class="hint">Волны и суперпозиция</div></div></div>
+    <div class="card"><div class="emoji">💧</div><div><div class="name">Виртуальный гидравлический пресс</div><div class="hint">Симулятор давлений</div></div></div>
+    <div class="card"><div class="emoji">🚀</div><div><div class="name">Калькулятор кинематики движения</div><div class="hint">Скорость, путь, ускорение</div></div></div>
+  </div>
+</section>
+
+<!-- ================= ИНФОРМАТИКА ================= -->
+<section id="informatics">
+  <div class="section-head">
+    <div class="section-icon">💻</div>
+    <h2>Информатика и программирование</h2>
+  </div>
+  <p class="section-sub">15 инструментов для кода, алгоритмов и логики</p>
+  <div class="divider"></div>
+  <div class="grid">
+    <div class="card"><div class="emoji">💻</div><div><div class="name">Редактор кода с подсветкой синтаксиса</div><div class="hint">Python, JS, C++</div></div></div>
+    <div class="card"><div class="emoji">🔢</div><div><div class="name">Калькулятор систем счисления</div><div class="hint">2, 8, 10, 16</div></div></div>
+    <div class="card"><div class="emoji">📊</div><div><div class="name">Визуализатор алгоритмов сортировки</div><div class="hint">Пузырёк, быстрая, слиянием</div></div></div>
+    <div class="card"><div class="emoji">🔣</div><div><div class="name">Симулятор логических схем</div><div class="hint">И, ИЛИ, НЕ, триггеры</div></div></div>
+    <div class="card"><div class="emoji">✅</div><div><div class="name">Тренажёр по таблицам истинности</div><div class="hint">Логические выражения</div></div></div>
+    <div class="card"><div class="emoji">🔀</div><div><div class="name">Калькулятор битовых операций</div><div class="hint">AND, OR, XOR, сдвиги</div></div></div>
+    <div class="card"><div class="emoji">🌲</div><div><div class="name">Визуализатор структур данных</div><div class="hint">Стек, очередь, дерево, граф</div></div></div>
+    <div class="card"><div class="emoji">⏱️</div><div><div class="name">Калькулятор сложности алгоритмов</div><div class="hint">О-большое</div></div></div>
+    <div class="card"><div class="emoji">🔍</div><div><div class="name">Редактор регулярных выражений</div><div class="hint">Проверка и объяснение</div></div></div>
+    <div class="card"><div class="emoji">🗺️</div><div><div class="name">Генератор блок-схем</div><div class="hint">Алгоритмы наглядно</div></div></div>
+    <div class="card"><div class="emoji">🗄️</div><div><div class="name">Тренажёр по SQL-запросам</div><div class="hint">SELECT, JOIN, GROUP BY</div></div></div>
+    <div class="card"><div class="emoji">🗂️</div><div><div class="name">Визуализатор кодировок и файлов</div><div class="hint">ASCII, Unicode, биты</div></div></div>
+    <div class="card"><div class="emoji">#️⃣</div><div><div class="name">Калькулятор хеш-функций</div><div class="hint">MD5, SHA, CRC</div></div></div>
+    <div class="card"><div class="emoji">🧠</div><div><div class="name">Симулятор нейронной сети</div><div class="hint">Основы ИИ</div></div></div>
+    <div class="card"><div class="emoji">🐍</div><div><div class="name">Интерактивный курс по основам Python</div><div class="hint">Практика с нуля</div></div></div>
+  </div>
+</section>
+
+<!-- ================= ПОДДЕРЖКА ================= -->
+<div class="support">
+  <div class="support-box">
+    <h3>Поддержать проект</h3>
+    <p>Сайт создаётся и развивается бесплатно, без рекламы и регистрации. Если инструменты помогли тебе — можешь поддержать разработку.</p>
+    <a class="btn-boosty" href="https://boosty.to/" target="_blank" rel="noopener">
+      ❤️ Поддержать
+    </a>
+  </div>
+</div>
+
+<!-- ================= ПОДВАЛ ================= -->
+<footer>
+  <div class="footer-inner">
+    <h3>Зачем нужен этот сайт</h3>
+    <p>УчисьЛегко — это бесплатный сборник онлайн-инструментов для школьников и студентов. Здесь собраны калькуляторы, симуляторы, визуализаторы и тренажёры по алгебре, геометрии, теории вероятностей, физике и информатике.</p>
+    <p>Сайт создан, чтобы сделать учёбу проще: не нужно искать десятки разрозненных сервисов — все нужные инструменты собраны в одном месте. Без регистрации, без оплаты, без лишних сложностей: открыл, выбрал инструмент и решил задачу.</p>
+    <div class="copy">© 2026 УчисьЛегко. Все инструменты бесплатны.</div>
+  </div>
+</footer>
+
+<button id="toTop" title="Наверх">↑</button>
+
+<script>
+  /* Плавная прокрутка с учётом отступов (CSS уже даёт smooth) */
+  document.querySelectorAll('.nav-buttons a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  /* Появление карточек при прокрутке */
+  const cards = document.querySelectorAll('.card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 25);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+  cards.forEach(card => observer.observe(card));
+
+  /* Клик по карточке */
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const name = card.querySelector('.name').textContent;
+      alert('🔧 «' + name + '»\n\nИнструмент скоро появится. Сейчас доступен только дизайн и каталог.');
+    });
+  });
+
+  /* Кнопка "наверх" */
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 500);
+  });
+  toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+</body>
+</html>
